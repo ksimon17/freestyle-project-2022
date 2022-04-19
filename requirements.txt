@@ -1,0 +1,11 @@
+
+requests
+
+json
+
+SendGrid
+
+Ipython
+
+heroku
+
