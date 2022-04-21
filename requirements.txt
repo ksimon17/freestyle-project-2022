@@ -1,12 +1,19 @@
+# /requirements.txt
 
 requests
 
 json
 
-SendGrid
+sendgrid==6.6.0
 
 Ipython
 
 heroku
+gunicorn
 
 flask
+
+dotenv
+
+python-dotenv
+
