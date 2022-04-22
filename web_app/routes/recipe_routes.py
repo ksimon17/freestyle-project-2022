@@ -13,7 +13,7 @@ def index():
     return render_template("recipes.html")
 
 # @recipe_routes.route("/recipes/list", methods=["GET", "POST"])
-@recipe_routes.route("/recipes/list", methods=["POST"])
+@recipe_routes.route("/recipes/list", methods=["GET", "POST"])
 def recipe_list():
     print("Recipe List...")
 
@@ -23,14 +23,33 @@ def recipe_list():
     method = form_data["method"]
     selection = form_data["selection"]
 
-    if method == "By Category":
-        recipes = display_category(selection)
-    elif method == "By Nationality/Country of Origin":
-        recipes = display_area(selection)
-    elif method == "By Keyword":
-        recipes = display_name(selection)
-    elif method == "Random Selection":
-        recipes = display_random()
+    recipes= [{'name':'apple',
+               'picture': 'url',
+               'ingredients':
+                    [{'measure': '12 oz', 'name': 'Whiskey'},
+                    {'measure': '12 oz', 'name': 'Beer'},
+                    {'measure': '12 oz frozen', 'name': 'Lemonade'},
+                    {'measure': '1 cup crushed', 'name': 'Ice'}],
+                'instructions': 'paragraph of instructions',
+                'video_link' : 'url'},
+               {'name':'pasta',
+               'picture': 'url',
+               'ingredients':
+                    [{'measure': '12 oz', 'name': 'Whiskey'},
+                    {'measure': '12 oz', 'name': 'Beer'},
+                    {'measure': '12 oz frozen', 'name': 'Lemonade'},
+                    {'measure': '1 cup crushed', 'name': 'Ice'}],
+                'instructions': 'paragraph of instructions',
+                'video_link' : 'url'}
+             ]
+    # if method == "By Category":
+    #     recipes = display_category(selection)
+    # elif method == "By Nationality/Country of Origin":
+    #     recipes = display_area(selection)
+    # elif method == "By Keyword":
+    #     recipes = display_name(selection)
+    # elif method == "Random Selection":
+    #     recipes = display_random()
     
     return render_template("recipes_list.html", recipes=recipes)
 

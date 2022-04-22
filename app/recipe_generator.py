@@ -1,6 +1,7 @@
 # app/recipe_generator.py
 
 import requests, json, os
+from pprint import pprint
 from IPython.display import Image, display 
 
 # FUNCTION TO CONVERT API DATA TO A MORE ACCESSIBLE FORMAT
@@ -50,8 +51,10 @@ def display_name(name):
   recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
   recipe = read_data(recipe_url)
 
-  display_name_pics(recipe["meals"][0])
-  display_recipe(recipe)
+#   display_name_pics(recipe["meals"][0])
+#   display_recipe(recipe)
+
+  return [recipe]
 
 # PRINTING OUT RECIPES BY FOOD CATEGORY
 def display_category(category): 
@@ -114,4 +117,6 @@ if __name__ == "__main__":
     # display_category(category)
     # display_area(area)
 
-    recipes = display_category(selection)
+    # recipes = display_category(selection)
+    recipes = display_name(name)
+    pprint(recipes)

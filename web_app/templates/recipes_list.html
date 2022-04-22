@@ -9,4 +9,16 @@
 
     <p>This is a paragraph on the "Recipe List" page.</p>
 
+    <ul>
+        {% for recipe in recipes %}
+            <li>{{ recipe["name"] }} | {{ recipe["instructions"] }}</li>
+            <ul> 
+                {% for ingredient in recipe["ingredients"]%}
+                    <li>{{ingredient["name"]}} | {{ingredient["measure"]}}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+
+
 {% endblock %}
