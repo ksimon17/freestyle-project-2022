@@ -8,6 +8,7 @@ from web_app.routes.home_routes import home_routes
 from web_app.routes.login_routes import login_routes
 from web_app.routes.recipe_routes import recipe_routes
 from web_app.routes.nutrition_routes import nutrition_routes
+from web_app.routes.list_routes import list_routes
 
 
 load_dotenv()
@@ -20,7 +21,8 @@ def create_app():
     app.register_blueprint(home_routes)
     app.register_blueprint(login_routes)
     app.register_blueprint(recipe_routes)
-    app.register.blueprint(nutrition_routes)
+    app.register_blueprint(nutrition_routes)
+    app.register_blueprint(list_routes)
     return app
 
 if __name__ == "__main__":
