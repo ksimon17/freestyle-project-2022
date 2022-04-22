@@ -38,8 +38,10 @@
     -->
     {% set nav_links = [
       ('/about', 'about', 'About'),
-      ('/hello', 'hello', 'Hello'),
-      ('/weather/form', 'weather_form', 'Weather Form')
+      ('/list', 'list', 'List'),
+      ('/recipe', 'recipe', 'Recipe'),
+      ('/login', 'login', 'Login'),
+      ('/nutrition', 'nutrition', 'Nutrition'),
     ] -%}
     {% set active_page = active_page|default('home') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -80,7 +82,7 @@
 
         <footer style="margin-top:2em; margin-bottom:2em;">
         <hr>
-            &copy; Copyright 2021 Kyle Simon |
+            &copy; Copyright 2022 Kyle Simon |
             <a href="https://github.com/ksimon17/freestyle-project-2022">Source</a>
         </footer>
     </div>

@@ -1,0 +1,28 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "recipes" %}
+
+{% block content %}
+
+    <h2>Recipes Finder</h2>
+
+    <p>Individual Recipe Generator</p>
+
+    <form action="/recipes" method="POST">
+
+        <label>Nationality:</label>
+        <input type="text" name="nationality" placeholder="Spanish" value="Spanish">
+        <br>
+        <label>Keyword:</label>
+        <input type="text" name="keyword" placeholder="orange" value="orange">
+        <br>
+        <label>Category:</label>
+        <input type="text" name="category" placeholder="Seafood" value="Seafood">
+        <br>
+        <label>Email:</label>
+        <input type="text" name="email" placeholder="kms475@georgetown.edu" value="kms475@georgetown.edu">
+        <br>
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}
