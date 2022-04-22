@@ -92,12 +92,26 @@ def display_area(area):
     # Display ingredients, intstruction, and video
     display_recipe(current)
 
+# PRINT 10 RECIPES RANDOMLY 
+def display_random():
+  for x in range (1,10):
+    random_url = "https://www.themealdb.com/api/json/v1/1/random.php"
+    random = read_data(random_url)
+    
+    # Display the recipe's name and picture
+    display_name_pics(random["meals"][0])
+
+    # Display ingredients, intstruction, and video
+    display_recipe(random)
+
 if __name__ == "__main__":
     name = "orange"
-    category =  "Seafood"
+    selection =  "Seafood"
     area = "Canadian"
 
-    
-    display_name(name)
-    display_category(category)
-    display_area(area)
+
+    # display_name(name)
+    # display_category(category)
+    # display_area(area)
+
+    recipes = display_category(selection)
