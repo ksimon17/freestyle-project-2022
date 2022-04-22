@@ -2,8 +2,6 @@
 
 requests
 
-#json
-
 sendgrid==6.6.0
 
 Ipython
