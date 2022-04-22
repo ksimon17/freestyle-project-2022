@@ -13,6 +13,4 @@ gunicorn
 
 flask
 
-
 python-dotenv
-
