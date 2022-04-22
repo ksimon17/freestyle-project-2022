@@ -46,17 +46,44 @@ def display_recipe(recipe):
     print("Video Link:", video)
   print("---------------------")
 
+def convert_to_dict(recipe):
+  ingredients = []
+  for x in range (1,19):
+    #define variables
+    ingredientString = f'strIngredient{x}'
+    measureString = f'strMeasure{x}'
+    ingredient = recipe["meals"][0][ingredientString] 
+    measure = recipe["meals"][0][measureString]
+
+    # APPEND INGREDIENT AND MEASURE IF THEY BOTH EXIST
+    if ingredient and measure:
+      ingredients.append({
+                          "name": ingredient.strip(),
+                          "measure": measure.strip()
+                         })
+  title = recipe["meals"][0]["strMeal"]
+  picture_url = recipe["meals"][0]["strMealThumb"]
+  instructions = recipe["meals"][0]["strInstructions"]
+  video_url = recipe["meals"][0]["strYoutube"]
+  
+  recipes = []
+  recipes.append({
+        "name": title.strip(),
+        "picture_url": picture_url.strip(),
+        "ingredients": ingredients,
+        "instructions": instructions.strip(),
+        "video_url": video_url.strip()
+       })
+  pprint(recipes)
+  return recipes
+
 # PRINT RECIPES BY NAME
 def display_name(name):
   recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
   recipe = read_data(recipe_url)
-
-  
-
-#   display_name_pics(recipe["meals"][0])
-#   display_recipe(recipe)
-
-  return [recipe]
+  recipes = convert_to_dict(recipe)
+  #pprint(recipes)
+  return recipes
 
 # PRINTING OUT RECIPES BY FOOD CATEGORY
 def display_category(category): 

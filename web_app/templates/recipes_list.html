@@ -1,22 +1,29 @@
 {% extends "bootstrap_layout.html" %}
 {% set active_page = "recipe/list" %}
 
+
+
 {% block content %}
 
     <h1>Recipe List</h1>
-
-    
 
     <p>This is a paragraph on the "Recipe List" page.</p>
 
     <ul>
         {% for recipe in recipes %}
-            <li>{{ recipe["name"] }} | {{ recipe["instructions"] }}</li>
+            <h>{{ recipe["name"] }}</h>
+            <br>
+
+            <img src={recipe["pic_url"]} alt="Trulli" width="500" height="333">
             <ul> 
                 {% for ingredient in recipe["ingredients"]%}
-                    <li>{{ingredient["name"]}} | {{ingredient["measure"]}}</li>
+                    <li>{{ingredient["name"]}} ({{ingredient["measure"]}})</li> 
                 {% endfor %}
             </ul>
+            <br>
+            <p>Instructions: {{recipe["instructions"]}}</p>
+            <h>Video Link: {{recipe["video_url"]}}</h>
+            
         {% endfor %}
     </ul>
 

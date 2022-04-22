@@ -2,7 +2,9 @@
 
 from flask import Blueprint, request, render_template
 
-from app.recipe_generator import display_category, display_area, display_name, display_random
+from pprint import pprint
+
+from app.recipe_generator_new import display_category, display_area, display_name, display_random
 
 recipe_routes = Blueprint("recipe_routes", __name__)
 
@@ -13,7 +15,7 @@ def index():
     return render_template("recipes.html")
 
 # @recipe_routes.route("/recipes/list", methods=["GET", "POST"])
-@recipe_routes.route("/recipes/list", methods=["GET", "POST"])
+@recipe_routes.route("/recipes/list", methods=["GET","POST"])
 def recipe_list():
     print("Recipe List...")
 
@@ -22,26 +24,32 @@ def recipe_list():
 
     method = form_data["method"]
     selection = form_data["selection"]
+    print(method)
+    print(selection)
 
-    recipes= [{'name':'apple',
-               'picture': 'url',
-               'ingredients':
-                    [{'measure': '12 oz', 'name': 'Whiskey'},
-                    {'measure': '12 oz', 'name': 'Beer'},
-                    {'measure': '12 oz frozen', 'name': 'Lemonade'},
-                    {'measure': '1 cup crushed', 'name': 'Ice'}],
-                'instructions': 'paragraph of instructions',
-                'video_link' : 'url'},
-               {'name':'pasta',
-               'picture': 'url',
-               'ingredients':
-                    [{'measure': '12 oz', 'name': 'Whiskey'},
-                    {'measure': '12 oz', 'name': 'Beer'},
-                    {'measure': '12 oz frozen', 'name': 'Lemonade'},
-                    {'measure': '1 cup crushed', 'name': 'Ice'}],
-                'instructions': 'paragraph of instructions',
-                'video_link' : 'url'}
-             ]
+    # recipes= [{'name':'apple',
+    #            'picture': 'url',
+    #            'ingredients':
+    #                 [{'measure': '12 oz', 'name': 'Whiskey'},
+    #                 {'measure': '12 oz', 'name': 'Beer'},
+    #                 {'measure': '12 oz frozen', 'name': 'Lemonade'},
+    #                 {'measure': '1 cup crushed', 'name': 'Ice'}],
+    #             'instructions': 'paragraph of instructions',
+    #             'video_link' : 'url'},
+    #            {'name':'pasta',
+    #            'picture': 'url',
+    #            'ingredients':
+    #                 [{'measure': '12 oz', 'name': 'Whiskey'},
+    #                 {'measure': '12 oz', 'name': 'Beer'},
+    #                 {'measure': '12 oz frozen', 'name': 'Lemonade'},
+    #                 {'measure': '1 cup crushed', 'name': 'Ice'}],
+    #             'instructions': 'paragraph of instructions',
+    #             'video_link' : 'url'}
+    #          ]
+
+    recipes = display_name(selection)
+    pprint(recipes)
+
     # if method == "By Category":
     #     recipes = display_category(selection)
     # elif method == "By Nationality/Country of Origin":
