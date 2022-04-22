@@ -38,15 +38,16 @@
     -->
     {% set nav_links = [
       ('/about', 'about', 'About'),
-      ('/list', 'list', 'List'),
-      ('/recipe', 'recipe', 'Recipe'),
-      ('/login', 'login', 'Login'),
+      ('/recipes', 'recipes', 'Recipes'),
       ('/nutrition', 'nutrition', 'Nutrition'),
+      ('/list', 'list', 'List'),
+      ('/help','help','Help'),
+      ('/login', 'login', 'Login'),
     ] -%}
     {% set active_page = active_page|default('home') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">My Web App</a>
+            <a class="navbar-brand" href="/">Recipe Generator and Nutrition App</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

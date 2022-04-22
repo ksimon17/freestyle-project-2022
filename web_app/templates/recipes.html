@@ -3,23 +3,43 @@
 
 {% block content %}
 
-    <h2>Recipes Finder</h2>
+    <h2>Recipes Generator</h2>
 
-    <p>Individual Recipe Generator</p>
+    <h3>Instructions</h3>
+
+    <p> Please select the method by which you wish to narrow your search for recipes 
+        (i.e., By Category, By Nationality/Country of Origin, By Keyword, or Randomly) and then in the space 
+        box provided below the dropdown menu, please input your selection based on the method you chose.
+        For example, if you wish to receive a list of recipes by Category, you could enter "Seafood". 
+        If you wish to receive a list of recipes by Nationality/Country of Origin, you could enter "Canadian". 
+        If you wish to receive a list of recipes by Keyword, you could enter "orange". If you wish to to receive a list 
+        of random recipes, do not enter anything in the provided box. The options listed above are not meant to be 
+        represent the only selections a user can enter, but are rather listed to show what valid input could look like. 
+        For a list of all potential valid options, please refer to the list provided on the "Help" page of this web 
+        application. The user is also to request the recipe list provided by the Recipe Generator to an email of their choosing. 
+        If you wish to receive your individual recipe list by email, please enter your email in the text box titled 
+        "Email". Once you have filled everything out with valid inputs, press the Submit button to receive your 
+        recipe list from the Recipe Generator. 
+    </p>
 
     <form action="/recipes" method="POST">
 
-        <label>Nationality:</label>
-        <input type="text" name="nationality" placeholder="Spanish" value="Spanish">
+        <label for="method">Choose the method by which you wish to narrow your search for recipes:</label>
+
+        <select name="method" id="method">
+          <option value="By Category">By Category</option>
+          <option value="By Nationality/Country of Origin">By Nationality/Country of Origin</option>
+          <option value="By Keyword">By Keyword</option>
+          <option value="Random Selection">Random Selection</option>
+        </select>
         <br>
-        <label>Keyword:</label>
-        <input type="text" name="keyword" placeholder="orange" value="orange">
+       
+        <label>Individual Selection:</label>
+        <input type="text" name="selection" placeholder="" value="">
         <br>
-        <label>Category:</label>
-        <input type="text" name="category" placeholder="Seafood" value="Seafood">
-        <br>
+
         <label>Email:</label>
-        <input type="text" name="email" placeholder="kms475@georgetown.edu" value="kms475@georgetown.edu">
+        <input type="text" name="email" placeholder="" value="">
         <br>
 
         <button>Submit</button>
