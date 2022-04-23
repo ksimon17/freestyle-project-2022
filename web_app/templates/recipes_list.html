@@ -5,25 +5,42 @@
 
 {% block content %}
 
+    <style>
+        .ingredients {
+            font-weight: bold;
+        }
+        .name {
+            font-weight: bold;
+            font-size: larger;
+        }
+
+    </style>
     <h1>Recipe List</h1>
 
     <p>This is a paragraph on the "Recipe List" page.</p>
 
     <ul>
         {% for recipe in recipes %}
-            <h>{{ recipe["name"] }}</h>
             <br>
-            <h>{{ recipe["picture_url"]}}</h>
+            <h class="name">{{ recipe["name"] }}</h>
             <br>
-            <img src={recipe["picture_url"]} alt="Picture" width="500" height="333">
+            <img 
+                src={{recipe["picture_url"]}}
+                alt="Picture" 
+                width="400" 
+                height="233"
+            >
+            <br>
+            <h class="ingredients">Ingredients</h>
             <ul> 
                 {% for ingredient in recipe["ingredients"]%}
                     <li>{{ingredient["name"]}} ({{ingredient["measure"]}})</li> 
                 {% endfor %}
             </ul>
             <br>
-            <p>Instructions: {{recipe["instructions"]}}</p>
-            <h>Video Link: {{recipe["video_url"]}}</h>
+            <p> <strong>Instructions:</strong> {{recipe["instructions"]}}</p>
+            <h> <strong>Video Link:</strong> {{recipe["video_url"]}}</h>
+            <hr>
             
         {% endfor %}
     </ul>
