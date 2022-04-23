@@ -46,15 +46,43 @@ def display_recipe(recipe):
     print("Video Link:", video)
   print("---------------------")
 
+def convert_to_dict(recipe):
+  ingredients = []
+  for x in range (1,19):
+    #define variables
+    ingredientString = f'strIngredient{x}'
+    measureString = f'strMeasure{x}'
+    ingredient = recipe["meals"][0][ingredientString] 
+    measure = recipe["meals"][0][measureString]
+
+    # APPEND INGREDIENT AND MEASURE IF THEY BOTH EXIST
+    if ingredient and measure:
+      ingredients.append({
+                          "name": ingredient.strip(),
+                          "measure": measure.strip()
+                         })
+  title = recipe["meals"][0]["strMeal"]
+  picture_url = recipe["meals"][0]["strMealThumb"]
+  instructions = recipe["meals"][0]["strInstructions"]
+  video_url = recipe["meals"][0]["strYoutube"]
+  
+  recipes = {
+        "name": title.strip(),
+        "picture_url": picture_url.strip(),
+        "ingredients": ingredients,
+        "instructions": instructions.strip(),
+        "video_url": video_url.strip()
+       }
+  #pprint(recipes)
+  return recipes
+
 # PRINT RECIPES BY NAME
 def display_name(name):
   recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
   recipe = read_data(recipe_url)
-
-#   display_name_pics(recipe["meals"][0])
-#   display_recipe(recipe)
-
-  return [recipe]
+  recipes = convert_to_dict(recipe)
+  #pprint(recipes)
+  return [recipes]
 
 # PRINTING OUT RECIPES BY FOOD CATEGORY
 def display_category(category): 
@@ -63,11 +91,12 @@ def display_category(category):
 
   #print(category)
   #meals = []
+  recipes_list = []
   for meal in category["meals"]:
 
     #meals.append(meal["strMeal"])
 
-    display_name_pics(meal)
+    #display_name_pics(meal)
     name = meal["strMeal"]
 
     # Find the instructions and ingredients for each 
@@ -75,17 +104,23 @@ def display_category(category):
     current = read_data(recipe1_url)
 
     # Display ingredients, intstruction, and video
-    display_recipe(current)
+    #display_recipe(current)
+    recipe = convert_to_dict(current)
+    recipes_list.append(recipe)
+  #pprint(recipes_list)
+  return recipes_list
+
 
 # PRINT RECIPES BASED ON NATIONALITY/AREA
 def display_area(area):
   area_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?a={area}'
   area = read_data(area_url)
 
+  recipes_list = []
   for meal in area["meals"]:
     
     # Display the recipe's name and picture
-    display_name_pics(meal)
+    #display_name_pics(meal)
     name = meal["strMeal"]
 
     # Find the instructions and ingredients for each 
@@ -93,19 +128,29 @@ def display_area(area):
     current = read_data(recipe1_url)
 
     # Display ingredients, intstruction, and video
-    display_recipe(current)
+
+    #display_recipe(current)
+
+    recipe = convert_to_dict(current)
+    recipes_list.append(recipe)
+  return recipes_list
 
 # PRINT 10 RECIPES RANDOMLY 
 def display_random():
+  recipes_list = []
   for x in range (1,10):
     random_url = "https://www.themealdb.com/api/json/v1/1/random.php"
     random = read_data(random_url)
     
     # Display the recipe's name and picture
-    display_name_pics(random["meals"][0])
+    #display_name_pics(random["meals"][0])
 
     # Display ingredients, intstruction, and video
-    display_recipe(random)
+    #display_recipe(random)
+
+    recipe = convert_to_dict(random)
+    recipes_list.append(recipe)
+  return recipes_list
 
 if __name__ == "__main__":
     name = "orange"
@@ -117,6 +162,8 @@ if __name__ == "__main__":
     # display_category(category)
     # display_area(area)
 
-    # recipes = display_category(selection)
-    recipes = display_name(name)
+    #recipes = display_category(selection)
+    #recipes = display_name(name)
+    #recipes = display_area(area)
+    recipes = display_random()
     pprint(recipes)
