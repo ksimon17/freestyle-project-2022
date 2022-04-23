@@ -5,6 +5,7 @@ from flask import Blueprint, request, render_template
 from pprint import pprint
 
 from app.recipe_generator_new import display_category, display_area, display_name, display_random
+from app.email_service import send_email
 
 recipe_routes = Blueprint("recipe_routes", __name__)
 
@@ -24,8 +25,10 @@ def recipe_list():
 
     method = form_data["method"]
     selection = form_data["selection"]
+    email = form_data["email"]
     print(method)
     print(selection)
+    print(email)
 
     # recipes= [{'name':'apple',
     #            'picture': 'url',
@@ -61,9 +64,66 @@ def recipe_list():
         recipes = display_random()
     #pprint(recipes)
 
+
+
+
+    if email:
+        subject = "Custom Recipe List - Recipe Generator App Search"
+        
+        # message = """
+        # <html>
+        # <h1>Recipe List</h1>
+
+        # <p>This is a paragraph on the "Recipe List" page.</p>
+
+        # {% for recipe in recipes %}
+        # <ul>
+        #         <br>
+        #         <h>
+        #             <% {{recipe["name"]}} %>
+        #         </h>
+        # </ul>
+        # <%endfor%>
+        # </html>
+        # """
+        
+        # message = """
+        # <h1>Recipe: {recipes}</h1>
+        # """
+
+        message = """<html>
+        <head></head>
+        <body><p>{recipes}</p></body>
+        </html>"""  
+
+        recipe_list = ""
+        for recipe in recipes:
+            name = recipe["name"]
+            recipe_list += f"<li>Name: {name}</li>"
+
+        print(recipe_list)
+        html = """\
+        <html>
+        <head></head>
+        <body>
+            <p>Thank you for using the Recipe Generator.<br>
+            Here is your individual recipe based on your search:<br>
+            <br>
+            <br>
+            <h1>{recipes}</h1>
+            <br>
+            <img src="http://domain.com/footer.jpg">
+            </p>
+        </body>
+        </html>
+        """.format(recipes=recipes)
+
+        send_email(subject, html)
+
+
     return render_template("recipes_list.html", recipes=recipes)
 
-
+    
 #     if request.method == "GET":
 #         print("URL PARAMS:", dict(request.args))
 #         request_data = dict(request.args)
