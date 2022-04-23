@@ -13,8 +13,9 @@
         {% for recipe in recipes %}
             <h>{{ recipe["name"] }}</h>
             <br>
-
-            <img src={recipe["pic_url"]} alt="Trulli" width="500" height="333">
+            <h>{{ recipe["picture_url"]}}</h>
+            <br>
+            <img src={recipe["picture_url"]} alt="Picture" width="500" height="333">
             <ul> 
                 {% for ingredient in recipe["ingredients"]%}
                     <li>{{ingredient["name"]}} ({{ingredient["measure"]}})</li> 
