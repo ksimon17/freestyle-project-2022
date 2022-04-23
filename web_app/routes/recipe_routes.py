@@ -47,18 +47,20 @@ def recipe_list():
     #             'video_link' : 'url'}
     #          ]
 
-    recipes = display_name(selection)
-    pprint(recipes)
 
-    # if method == "By Category":
-    #     recipes = display_category(selection)
-    # elif method == "By Nationality/Country of Origin":
-    #     recipes = display_area(selection)
-    # elif method == "By Keyword":
-    #     recipes = display_name(selection)
-    # elif method == "Random Selection":
-    #     recipes = display_random()
-    
+    #recipes = display_name(selection)
+   
+
+    if method == "By Category":
+        recipes = display_category(selection)
+    elif method == "By Nationality/Country of Origin":
+        recipes = display_area(selection)
+    elif method == "By Keyword":
+        recipes = display_name(selection)
+    elif method == "Random Selection":
+        recipes = display_random()
+    #pprint(recipes)
+
     return render_template("recipes_list.html", recipes=recipes)
 
 
