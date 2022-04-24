@@ -152,10 +152,57 @@ def display_random():
     recipes_list.append(recipe)
   return recipes_list
 
+# PRINT RECIPES BASED ON INGREDIENT
+def display_ingredient(ingredient):
+  ingredient_url=f'https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}'
+  ingredient = read_data(ingredient_url)
+
+  recipes_list = []
+  for meal in ingredient["meals"]:
+    name = meal["strMeal"]
+    
+    recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
+    current = read_data(recipe_url)
+    
+    recipe = convert_to_dict(current)
+    recipes_list.append(recipe)
+  return recipes_list
+
+# FETCH ALL POSSIBLE CATEGORIES
+def fetch_categories():
+  url = "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+  data = read_data(url)
+
+  categories = []
+  for category in data["meals"]:
+    categories.append(category["strCategory"])
+  
+  return categories
+
+def fetch_nationalities():
+  url = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+  data = read_data(url)
+
+  nationalities = []
+  for nationality in data["meals"]:
+    nationalities.append(nationality["strArea"])
+
+  return nationalities
+
+def fetch_ingredients():
+  url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
+  data = read_data(url)
+
+  ingredients = []
+  for ingredient in data["meals"]:
+    ingredients.append(ingredient["strIngredient"])
+  return ingredients
+
 if __name__ == "__main__":
     name = "orange"
     selection =  "Seafood"
     area = "Canadian"
+    ingredient = "chicken"
 
 
     # display_name(name)
@@ -165,5 +212,16 @@ if __name__ == "__main__":
     #recipes = display_category(selection)
     #recipes = display_name(name)
     #recipes = display_area(area)
-    recipes = display_random()
-    pprint(recipes)
+    # recipes = display_random()
+    # recipes = display_ingredient(ingredient)
+    # pprint(recipes)
+
+    # categories = fetch_categories()
+    # print(categories)
+    # nationalities = fetch_nationalities()
+    # print(nationalities)
+    #ingredients = fetch_ingredients()
+    print(ingredients)
+    
+
+  
