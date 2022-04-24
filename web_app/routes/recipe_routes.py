@@ -81,7 +81,6 @@ def recipe_list():
             <br>
             <h1>{recipes}</h1>
             <br>
-            <img src="http://domain.com/footer.jpg">
             </p>
         </body>
         </html>
