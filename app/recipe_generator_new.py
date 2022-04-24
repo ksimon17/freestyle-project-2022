@@ -189,6 +189,14 @@ def fetch_nationalities():
 
   return nationalities
 
+def fetch_ingredients():
+  url = "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
+  data = read_data(url)
+
+  ingredients = []
+  for ingredient in data["meals"]:
+    ingredients.append(ingredient["strIngredient"])
+  return ingredients
 
 if __name__ == "__main__":
     name = "orange"
@@ -205,13 +213,15 @@ if __name__ == "__main__":
     #recipes = display_name(name)
     #recipes = display_area(area)
     # recipes = display_random()
-    recipes = display_ingredient(ingredient)
-    pprint(recipes)
+    # recipes = display_ingredient(ingredient)
+    # pprint(recipes)
 
     # categories = fetch_categories()
     # print(categories)
     # nationalities = fetch_nationalities()
     # print(nationalities)
+    #ingredients = fetch_ingredients()
+    print(ingredients)
     
 
   

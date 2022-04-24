@@ -10,6 +10,9 @@
         .nationalities {
             font-weight: bold;
         }
+        .ingredients {
+            font-weight: bold;
+        }
 
     </style>
 
@@ -25,6 +28,12 @@
     <ul>
         {% for nationality in nationalities %}
             <li>{{nationality}}</li>
+        {% endfor %}
+    </ul>
+    <h class="ingredients">All Ingredients</h>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ingredient}}</li>
         {% endfor %}
     </ul>
 
