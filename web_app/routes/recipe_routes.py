@@ -4,7 +4,7 @@ from flask import Blueprint, request, render_template
 
 from pprint import pprint
 
-from app.recipe_generator_new import display_category, display_area, display_name, display_random
+from app.recipe_generator_new import display_category, display_area, display_name, display_random, display_ingredient
 from app.email_service import send_email
 
 recipe_routes = Blueprint("recipe_routes", __name__)
@@ -56,8 +56,8 @@ def recipe_list():
         recipes = display_category(selection)
     elif method == "By Nationality/Country of Origin":
         recipes = display_area(selection)
-    elif method == "By Keyword":
-        recipes = display_name(selection)
+    elif method == "By Ingredient":
+        recipes = display_ingredient(selection)
     elif method == "Random Selection":
         recipes = display_random()
     #pprint(recipes)
