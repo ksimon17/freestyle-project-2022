@@ -12,3 +12,6 @@ gunicorn
 flask
 
 python-dotenv
+
+# auth (login with google via oauth):
+Authlib==1.0.0
