@@ -3,8 +3,30 @@
 
 {% block content %}
 
-    <h1>Help</h1>
+    <style>
+        .categories {
+            font-weight: bold;
+        }
+        .nationalities {
+            font-weight: bold;
+        }
 
-    <p>LIST OF POSSIBLE OPTIONS NEEDED</p>
+    </style>
+
+    <h1>List of All Possible Inputs For Recipe Generator</h1>
+
+    <h class="categories">All Categories</h>
+    <ul>
+        {% for category in categories %}
+            <li>{{category}}</li>
+        {% endfor %}
+    </ul>
+    <h class="nationalities">All Nationalities/Countries of Origin</h>
+    <ul>
+        {% for nationality in nationalities %}
+            <li>{{nationality}}</li>
+        {% endfor %}
+    </ul>
+
 
 {% endblock %}

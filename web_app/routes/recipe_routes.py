@@ -50,9 +50,7 @@ def recipe_list():
     #             'video_link' : 'url'}
     #          ]
 
-
     #recipes = display_name(selection)
-   
 
     if method == "By Category":
         recipes = display_category(selection)
@@ -64,38 +62,9 @@ def recipe_list():
         recipes = display_random()
     #pprint(recipes)
 
-
-
-
     if email:
         subject = "Custom Recipe List - Recipe Generator App Search"
         
-        # message = """
-        # <html>
-        # <h1>Recipe List</h1>
-
-        # <p>This is a paragraph on the "Recipe List" page.</p>
-
-        # {% for recipe in recipes %}
-        # <ul>
-        #         <br>
-        #         <h>
-        #             <% {{recipe["name"]}} %>
-        #         </h>
-        # </ul>
-        # <%endfor%>
-        # </html>
-        # """
-        
-        # message = """
-        # <h1>Recipe: {recipes}</h1>
-        # """
-
-        message = """<html>
-        <head></head>
-        <body><p>{recipes}</p></body>
-        </html>"""  
-
         recipe_list = ""
         for recipe in recipes:
             name = recipe["name"]
@@ -122,17 +91,14 @@ def recipe_list():
 
 
     return render_template("recipes_list.html", recipes=recipes)
-
-    
+   
 #     if request.method == "GET":
 #         print("URL PARAMS:", dict(request.args))
 #         request_data = dict(request.args)
 #     elif request.method == "POST": # the form will send a POST
 #         print("FORM DATA:", dict(request.form))
 #         request_data = dict(request.form)
-        
-    
-    
+         
 #     country_code = request_data.get("country_code") or "US"
 #     zip_code = request_data.get("zip_code") or "20057"
 
