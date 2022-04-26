@@ -71,21 +71,45 @@ def recipe_list():
             recipe_list += f"<li>Name: {name}</li>"
 
         print(recipe_list)
-        html = """\
-        <html>
-        <head></head>
-        <body>
-            <p>Thank you for using the Recipe Generator.<br>
-            Here is your individual recipe based on your search:<br>
-            <br>
-            <br>
-            <h1>{recipes}</h1>
-            <br>
-            <img src="http://domain.com/footer.jpg">
-            </p>
-        </body>
-        </html>
-        """.format(recipes=recipes)
+        # html = f"""
+        # <html>
+        # <head></head>
+        # <body>
+        #     <p>Thank you for using the Recipe Generator.<br>
+        #     Here is your individual recipe based on your search:<br>
+        #     <br>
+        #     <br>
+        #     <h1>{recipes}</h1>
+        #     <br>
+        #     </p>
+        # </body>
+        # </html>
+        # """
+        
+        html = ""
+        html += f"<h>Recipe Generator Search Results</h>"
+        html += "<br>"
+        html += f"<p>Here is you individual recipe list based on your search: .</p>"
+        html += "<br>"
+        # html += "<ul>"
+        
+        for recipe in recipes:
+            html += f"<h> {recipe['name']} </h>"
+            html += "<br>"
+            html += "<br>"
+            html += f"<img src={recipe['picture_url']} alt='Picture' width='400' height= '233' >"
+            html += "<ul>"
+            html += "<li>Ingredients</li>"
+            html += "<ul>"
+            for ingredient in recipe["ingredients"]:
+                html += f"<li>{ingredient['name']} ({ingredient['measure']})</li>" 
+            html += "</ul>"
+            html += f"<li>Instructions: {recipe['instructions']} </li>"
+            html += f"<li>Video URL: {recipe['video_url']}</li>"
+            html += "</ul>"
+            html += "<br>"
+            html += "<hr>"
+        # html += "</ul>"
 
         send_email(subject, html)
 
