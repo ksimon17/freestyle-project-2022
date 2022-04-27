@@ -34,16 +34,24 @@ You must set up a local file named ".env" that is outside the root directory of 
 ```sh
 # this is the .env file
 
-# for the sengrid email bonus assignment
-SENDGRID_API_KEY="SENDGRID_API_KEY"
-SENDER_ADDRESS="SENDER_ADDRESS"
+# SendGrid 
+SENDGRID_API_KEY="____________"
+SENDER_ADDRESS="____________"
 
-# for the google sheet bonus assignment  -- Don't Know if this is necessary 
-GOOGLE_SHEET_ID="1_hisQ9kNjmc-cafIasMue6IQG-ql_6TcqFGpVNOkUSE"
-SHEET_NAME="shopping-clean"
+# Google AUTH
+GOOGLE_CLIENT_ID="____________"
+GOOGLE_CLIENT_SECRET="___________"
 
-#For Tax Rate
-TAX_RATE=0.0875
+# Google Analytics
+GA_TRACKER_ID="UA-XXXXXXX-1"
 ```
 Note that you will need to update the values of the SendGrid environment variables to meet your specific API key and email address that you created in your SendGrid account (instructions for that mentioned in the "SendGrid API Key Setup" Section)
 
+
+## Deploying
+
+See the [Deployer's Guide](/DEPLOYING.md) for instructions on deploying to a production server hosted by Heroku.
+
+
+
+## [License](/LICENSE.md)
