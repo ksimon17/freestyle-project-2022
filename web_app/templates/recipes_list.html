@@ -73,9 +73,9 @@
 
 
 
-    <h1>Recipe List</h1>
+    <h1>Recipe List - Generator Search Results</h1>
 
-    <p>This is a paragraph on the "Recipe List" page.</p>
+    <hr>
 
     <ul>
         {% for recipe in recipes %}
@@ -99,7 +99,7 @@
             </ul>
             <br>
             <p> <strong>Instructions:</strong> {{recipe["instructions"]}}</p>
-            <h> <strong>Video Link:</strong> {{recipe["video_url"]}}</h>
+            <h> <strong>Video Link:</strong> <a href="{{recipe['video_url']}}">{{recipe["video_url"]}}</a></h>
             <br> 
             <br> 
            

@@ -1,3 +1,12 @@
+# ignore google credentials:
+# if you want to name your credentials "google-credentials.json":
+google-credentials.json 
+# otherwise use this catch-all to ignore all JSON files:
+*.json   
+
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
