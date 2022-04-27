@@ -64,7 +64,7 @@ def create_app():
     #
     # SERVICES
     #
-  #  app.config["FIREBASE_SERVICE"] = FirebaseService()
+    app.config["FIREBASE_SERVICE"] = FirebaseService()
 
 
 

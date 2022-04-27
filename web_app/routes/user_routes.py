@@ -22,7 +22,7 @@ def orders():
 @user_routes.route("/user/orders/create", methods=["POST"])
 @authenticated_route
 def create_order():
-    print("CREATE USER ORDER...")
+    print("CREATE USER RECIPES...")
 
     form_data = dict(request.form)
     print("FORM DATA:", form_data)
