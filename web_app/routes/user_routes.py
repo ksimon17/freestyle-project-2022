@@ -22,7 +22,7 @@ def orders():
 @user_routes.route("/user/orders/create", methods=["POST"])
 @authenticated_route
 def create_order():
-    print("CREATE USER ORDER...")
+    print("CREATE USER RECIPES...")
 
     form_data = dict(request.form)
     print("FORM DATA:", form_data)
@@ -33,6 +33,7 @@ def create_order():
         "video_url": form_data["video_url"]
     }
 
+    #return redirect("/")
     current_user = session.get("current_user")
 
     service = current_app.config["FIREBASE_SERVICE"]

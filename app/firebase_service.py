@@ -8,7 +8,7 @@ from operator import itemgetter
 from firebase_admin import credentials, initialize_app, firestore
 
 CREDENTIALS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "google-credentials.json")
-
+print("credential filepath")
 
 def generate_timestamp():
     return datetime.now(tz=timezone.utc)
@@ -94,10 +94,10 @@ if __name__ == "__main__":
 
     service = FirebaseService()
 
-    print("-----------")
-    print("PRODUCTS...")
-    products = service.fetch_products()
-    pprint(products)
+    # print("-----------")
+    # print("PRODUCTS...")
+    # products = service.fetch_products()
+    # pprint(products)
 
     print("-----------")
     print("ORDERS...")
@@ -106,7 +106,8 @@ if __name__ == "__main__":
 
     print("-----------")
     print("NEW ORDER...")
-    product = products[0]
+    #product = products[0]
+    product = "orange"
     email_address = input("Email Address: ") or "hello@example.com"
     new_order, results = service.create_order(email_address, product)
     pprint(new_order)
