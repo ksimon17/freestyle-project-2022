@@ -102,11 +102,13 @@
             <h> <strong>Video Link:</strong> {{recipe["video_url"]}}</h>
             <br> 
             <br> 
-            <form action="/list" method="POST">
-                <div style="text-align: center;">
-                    <button class="button-4" role="button"><strong>Store {{recipe["name"]}} in Personalized List</strong></button>
-                </div>
-            </form>
+           
+            <!-- CREATE ORDER -->
+            <form method="POST" action="/user/orders/create" style="display: inline;">
+                <input type="hidden" name="recipe_name" value="{{ recipe['name'] }}">
+                <input type="hidden" name="video_url" value="{{ recipe['video_url'] }}">
+                <button type="submit" class="button-4" role="button"><strong>Store {{recipe["name"]}} in Personalized List</strong></button>
+             </form>
             <br>
 
             <hr>
