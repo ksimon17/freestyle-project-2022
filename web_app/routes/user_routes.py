@@ -26,11 +26,15 @@ def create_order():
 
     form_data = dict(request.form)
     print("FORM DATA:", form_data)
-    print(form_data["recipe_name"])
-    print(form_data["video_url"])
+    print("name:",form_data["recipe_name"])
+    print("video_url:", form_data["video_url"])
+    print("area:", form_data["area"])
+    print("category:", form_data["category"])
     product_info = {
         "name": form_data["recipe_name"],
-        "video_url": form_data["video_url"]
+        "video_url": form_data["video_url"],
+        "area": form_data["area"],
+        "category": form_data["category"]
     }
 
     #return redirect("/")

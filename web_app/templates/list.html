@@ -13,11 +13,36 @@
                     <th scope="col">Recipe Name</th>
                     <th scope="col">Food Category</th>
                     <th scope="col">Nationality/Country of Origin</th>
-                    <th scope="col">Link</th>
+                    <th scope="col">Check to Add to Grocery List</th>
                 </tr>
             </thead>
-        </table>
+            <form method="POST" action="/groceries" style="display: inline;">
+                <tbody>
+                    {% for order in orders%}
+                    <tr>
+                        <td>
+                            {{order["product_info"]["name"]}}
+                        </td>
+                        <td>
+                            {{order["product_info"]["category"]}}
+                        </td>
+                        <td>
+                            {{order["product_info"]["area"]}}
+                        </td>
+                        <td>
+                            <input type="checkbox" id="recipe" name="recipe">
+                            <label for="groceries">Check to Add</label>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                <button type="submit" class="button-4" role="button"><strong>Add recipes to groceries list</strong></button>   
+            </form>
     </div>
+
+    
+
 
 {% endblock %}
 

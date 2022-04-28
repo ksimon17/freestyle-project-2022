@@ -4,7 +4,7 @@ from flask import Blueprint, request, render_template
 
 from pprint import pprint
 
-from app.recipe_generator_new import display_category, display_area, display_name, display_random, display_ingredient
+from app.recipe_generator_new import display_category, display_area, display_name, display_random, display_ingredient, fetch_recipe_area, fetch_recipe_category
 from app.email_service import send_email
 
 recipe_routes = Blueprint("recipe_routes", __name__)
@@ -29,6 +29,8 @@ def recipe_list():
     print(method)
     print(selection)
     print(email)
+
+    
 
     # recipes= [{'name':'apple',
     #            'picture': 'url',
@@ -62,29 +64,10 @@ def recipe_list():
         recipes = display_random()
     #pprint(recipes)
 
+    #creating the HTML template 
     if email:
         subject = "Custom Recipe List - Recipe Generator App Search"
         
-        recipe_list = ""
-        for recipe in recipes:
-            name = recipe["name"]
-            recipe_list += f"<li>Name: {name}</li>"
-
-        print(recipe_list)
-        # html = f"""
-        # <html>
-        # <head></head>
-        # <body>
-        #     <p>Thank you for using the Recipe Generator.<br>
-        #     Here is your individual recipe based on your search:<br>
-        #     <br>
-        #     <br>
-        #     <h1>{recipes}</h1>
-        #     <br>
-        #     </p>
-        # </body>
-        # </html>
-        # """
         
         html = ""
         html += f"<h>Recipe Generator Search Results</h>"
@@ -112,7 +95,6 @@ def recipe_list():
         # html += "</ul>"
 
         send_email(subject, html)
-
 
     return render_template("recipes_list.html", recipes=recipes)
    
