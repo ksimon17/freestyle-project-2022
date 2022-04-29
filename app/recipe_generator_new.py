@@ -86,7 +86,7 @@ def display_name(name):
   recipe = read_data(recipe_url)
   recipes = convert_to_dict(recipe)
   #pprint(recipes)
-  return [recipes]
+  return recipes
 
 # PRINTING OUT RECIPES BY FOOD CATEGORY
 def display_category(category): 
@@ -213,6 +213,12 @@ def fetch_recipe_area(recipe_name):
   recipe = read_data(recipe_url)
   area = recipe["meals"][0]["strArea"]
   return area
+
+def fetch_recipe_url(recipe_name):
+  recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}'
+  recipe = read_data(recipe_url)
+  picture_url = recipe["meals"][0]["strMealThumb"]
+  return picture_url
 
 
 if __name__ == "__main__":

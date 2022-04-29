@@ -27,12 +27,12 @@ def create_order():
     form_data = dict(request.form)
     print("FORM DATA:", form_data)
     print("name:",form_data["recipe_name"])
-    print("video_url:", form_data["video_url"])
+    print("picture_url:", form_data["picture_url"])
     print("area:", form_data["area"])
     print("category:", form_data["category"])
     recipe_info = {
         "name": form_data["recipe_name"],
-        "video_url": form_data["video_url"],
+        "picture_url": form_data["picture_url"],
         "area": form_data["area"],
         "category": form_data["category"]
     }
@@ -45,7 +45,7 @@ def create_order():
     try:
         service.create_recipe(user_email=current_user["email"], recipe_info=recipe_info)
         flash(f"Recipe Added!", "success")
-        return redirect("/user/orders")
+        return redirect("/list")
     except Exception as err:
         print(err)
         flash(f"Oops, something went wrong: {err}", "warning")

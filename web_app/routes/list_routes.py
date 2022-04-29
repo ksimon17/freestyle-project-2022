@@ -17,6 +17,6 @@ def orders():
     service = current_app.config["FIREBASE_SERVICE"]
     recipes = service.fetch_user_recipes(current_user["email"])
 
-    print("orders:", recipes)
+    print("recipes:", recipes)
 
     return render_template("list.html",recipes=recipes)

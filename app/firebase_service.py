@@ -42,13 +42,27 @@ class FirebaseService:
     def recipes_ref(self):
         return self.db.collection("recipes")
 
+    @property
+    def groceries_ref(self):
+        return self.db.collection("groceries")
+
+    def create_grocery(self, user_email, recipe_info):
+        new_grocery_ref = self.groceries_ref.document() # new document with auto-generated id
+        new_grocery = {
+            "user_email": user_email,
+            "recipe_info": recipe_info,
+            "recipe_at": generate_timestamp()
+        }
+        results = new_grocery_ref.set(new_grocery)
+        return new_grocery, results
+
     def create_recipe(self, user_email, recipe_info):
         """
         Params :
 
             user_email (str)
 
-            product_info (dict) with name, description, price, and url
+            recipe_info (dict) with name, category, and area
 
         """
         new_recipe_ref = self.recipes_ref.document() # new document with auto-generated id
@@ -65,10 +79,28 @@ class FirebaseService:
         recipes = [doc.to_dict() for doc in self.recipes_ref.stream()]
         return recipes
 
+    def fetch_groceries(self):
+        groceries = [doc.to_dict() for doc in self.groceries_ref.stream()]
+        return groceries
+
+    def fetch_user_groceries(self, user_email):
+        query_ref = self.groceries_ref.where("user_email", "==", user_email)
+        docs = list(query_ref.stream())
+        groceries = []
+        for doc in docs:
+            grocery = doc.to_dict()
+            grocery["id"] = doc.id
+            #breakpoint()
+            #order["order_at"] = order["order_at"].strftime("%Y-%m-%d %H:%M")
+            groceries.append(grocery)
+        # sorting so latest order is first
+        groceries = sorted(groceries, key=itemgetter("recipe_at"), reverse=True)
+        return groceries
+
     def fetch_user_recipes(self, user_email):
         query_ref = self.recipes_ref.where("user_email", "==", user_email)
 
-        # sorting requires configuration of a composite index on the "orders" collection,
+        # sorting requires configuration of a composite index on the "recipes" collection,
         # ... so to keep it simple for students, we'll sort manually (see below)
         #query_ref = query_ref.order_by("order_at", direction=firestore.Query.DESCENDING) #.limit_to_last(20)
 
