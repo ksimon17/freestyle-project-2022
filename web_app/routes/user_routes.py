@@ -12,25 +12,29 @@ user_routes = Blueprint("user_routes", __name__)
 @user_routes.route("/user/orders")
 @authenticated_route
 def orders():
-    print("USER ORDERS...")
+    print("USER RECIPES...")
     current_user = session.get("current_user")
     service = current_app.config["FIREBASE_SERVICE"]
-    orders = service.fetch_user_orders(current_user["email"])
-    return render_template("user_orders.html", orders=orders)
+    recipes = service.fetch_user_recipes(current_user["email"])
+    return render_template("user_orders.html", recipes=recipes)
 
 
-@user_routes.route("/user/orders/create", methods=["POST"])
+@user_routes.route("/user/recipes/create", methods=["POST"])
 @authenticated_route
 def create_order():
     print("CREATE USER RECIPES...")
 
     form_data = dict(request.form)
     print("FORM DATA:", form_data)
-    print(form_data["recipe_name"])
-    print(form_data["video_url"])
-    product_info = {
+    print("name:",form_data["recipe_name"])
+    print("picture_url:", form_data["picture_url"])
+    print("area:", form_data["area"])
+    print("category:", form_data["category"])
+    recipe_info = {
         "name": form_data["recipe_name"],
-        "video_url": form_data["video_url"]
+        "picture_url": form_data["picture_url"],
+        "area": form_data["area"],
+        "category": form_data["category"]
     }
 
     #return redirect("/")
@@ -39,9 +43,9 @@ def create_order():
     service = current_app.config["FIREBASE_SERVICE"]
 
     try:
-        service.create_order(user_email=current_user["email"], product_info=product_info)
+        service.create_recipe(user_email=current_user["email"], recipe_info=recipe_info)
         flash(f"Recipe Added!", "success")
-        return redirect("/user/orders")
+        return redirect("/list")
     except Exception as err:
         print(err)
         flash(f"Oops, something went wrong: {err}", "warning")

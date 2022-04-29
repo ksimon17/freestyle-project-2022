@@ -65,13 +65,17 @@ def convert_to_dict(recipe):
   picture_url = recipe["meals"][0]["strMealThumb"]
   instructions = recipe["meals"][0]["strInstructions"]
   video_url = recipe["meals"][0]["strYoutube"]
+  area = recipe["meals"][0]["strArea"]
+  category = recipe["meals"][0]["strCategory"]
   
   recipes = {
         "name": title.strip(),
         "picture_url": picture_url.strip(),
         "ingredients": ingredients,
         "instructions": instructions.strip(),
-        "video_url": video_url.strip()
+        "video_url": video_url.strip(),
+        "area": area.strip(),
+        "category": category.strip()
        }
   #pprint(recipes)
   return recipes
@@ -82,7 +86,7 @@ def display_name(name):
   recipe = read_data(recipe_url)
   recipes = convert_to_dict(recipe)
   #pprint(recipes)
-  return [recipes]
+  return recipes
 
 # PRINTING OUT RECIPES BY FOOD CATEGORY
 def display_category(category): 
@@ -198,6 +202,25 @@ def fetch_ingredients():
     ingredients.append(ingredient["strIngredient"])
   return ingredients
 
+def fetch_recipe_category(recipe_name):
+  recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}'
+  recipe = read_data(recipe_url)
+  category = recipe["meals"][0]["strCategory"]
+  return category
+
+def fetch_recipe_area(recipe_name):
+  recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}'
+  recipe = read_data(recipe_url)
+  area = recipe["meals"][0]["strArea"]
+  return area
+
+def fetch_recipe_url(recipe_name):
+  recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}'
+  recipe = read_data(recipe_url)
+  picture_url = recipe["meals"][0]["strMealThumb"]
+  return picture_url
+
+
 if __name__ == "__main__":
     name = "orange"
     selection =  "Seafood"
@@ -210,18 +233,23 @@ if __name__ == "__main__":
     # display_area(area)
 
     #recipes = display_category(selection)
-    #recipes = display_name(name)
+   # recipes = display_name(name)
     #recipes = display_area(area)
-    # recipes = display_random()
-    # recipes = display_ingredient(ingredient)
-    # pprint(recipes)
+    #recipes = display_random()
+    #recipes = display_ingredient(ingredient)
+   # pprint(recipes)
 
     # categories = fetch_categories()
     # print(categories)
     # nationalities = fetch_nationalities()
     # print(nationalities)
     #ingredients = fetch_ingredients()
-    print(ingredients)
+    #print(ingredients)
+    # recipe_name = "Arrabiata"
+    # category = fetch_recipe_category(recipe_name)
+    # area = fetch_recipe_area(recipe_name)
+    # print(category)
+    # print(area)
     
 
   

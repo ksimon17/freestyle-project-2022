@@ -16,6 +16,7 @@ from web_app.routes.list_routes import list_routes
 from web_app.routes.help_routes import help_routes
 from web_app.routes.auth_routes import auth_routes
 from web_app.routes.user_routes import user_routes
+from web_app.routes.grocery_routes import grocery_routes
 
 load_dotenv()
 
@@ -76,6 +77,7 @@ def create_app():
     app.register_blueprint(help_routes)
     app.register_blueprint(auth_routes)
     app.register_blueprint(user_routes)
+    app.register_blueprint(grocery_routes)
 
 
     return app

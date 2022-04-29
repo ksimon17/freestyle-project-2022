@@ -1,0 +1,43 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "groceries" %}
+
+{% block content %}
+
+    <h1>Personal Grocery List</h1>
+
+    <div class="table-responsive">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Recipe Name</th>
+                    <th scope="col">Picture</th>
+                    <th scope="col">Ingredients</th>
+                </tr>
+            </thead>
+                <tbody>
+                    {% for grocery in list_of_groceries%}
+                    <tr>
+                        <td>
+                            {{grocery["name"]}}
+                        </td>
+                        <td>
+                            <img 
+                                src={{grocery["picture_url"]}}
+                                alt="Picture" 
+                                width="100" 
+                                height="100"
+                             >
+                        </td>
+                        <td>
+                            {% for ingredient in grocery["ingredients"]%}
+                                {{ingredient["name"]}} ({{ingredient["measure"]}}),
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    
+
+{% endblock %}
