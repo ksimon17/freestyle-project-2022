@@ -54,3 +54,4 @@ def groceries():
 
 
     return render_template("groceries.html",list_of_groceries=list_of_groceries)
+
