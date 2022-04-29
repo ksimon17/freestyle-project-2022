@@ -12,14 +12,14 @@ user_routes = Blueprint("user_routes", __name__)
 @user_routes.route("/user/orders")
 @authenticated_route
 def orders():
-    print("USER ORDERS...")
+    print("USER RECIPES...")
     current_user = session.get("current_user")
     service = current_app.config["FIREBASE_SERVICE"]
-    orders = service.fetch_user_orders(current_user["email"])
-    return render_template("user_orders.html", orders=orders)
+    recipes = service.fetch_user_recipes(current_user["email"])
+    return render_template("user_orders.html", recipes=recipes)
 
 
-@user_routes.route("/user/orders/create", methods=["POST"])
+@user_routes.route("/user/recipes/create", methods=["POST"])
 @authenticated_route
 def create_order():
     print("CREATE USER RECIPES...")
@@ -30,7 +30,7 @@ def create_order():
     print("video_url:", form_data["video_url"])
     print("area:", form_data["area"])
     print("category:", form_data["category"])
-    product_info = {
+    recipe_info = {
         "name": form_data["recipe_name"],
         "video_url": form_data["video_url"],
         "area": form_data["area"],
@@ -43,7 +43,7 @@ def create_order():
     service = current_app.config["FIREBASE_SERVICE"]
 
     try:
-        service.create_order(user_email=current_user["email"], product_info=product_info)
+        service.create_recipe(user_email=current_user["email"], recipe_info=recipe_info)
         flash(f"Recipe Added!", "success")
         return redirect("/user/orders")
     except Exception as err:

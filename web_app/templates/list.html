@@ -16,29 +16,29 @@
                     <th scope="col">Check to Add to Grocery List</th>
                 </tr>
             </thead>
-            <form method="POST" action="/groceries" style="display: inline;">
+           
                 <tbody>
-                    {% for order in orders%}
+                    {% for recipe in recipes%}
                     <tr>
                         <td>
-                            {{order["product_info"]["name"]}}
+                            {{recipe["recipe_info"]["name"]}}
                         </td>
                         <td>
-                            {{order["product_info"]["category"]}}
+                            {{recipe["recipe_info"]["category"]}}
                         </td>
                         <td>
-                            {{order["product_info"]["area"]}}
+                            {{recipe["recipe_info"]["area"]}}
                         </td>
                         <td>
-                            <input type="checkbox" id="recipe" name="recipe">
-                            <label for="groceries">Check to Add</label>
+                            <form method="POST" action="/groceries" style="display: inline;">
+                                <input type="hidden" name="recipe_name" value="{{ recipe['recipe_info']['name'] }}">
+                                <button type="submit" class="button-4" role="button"><strong>Add to groceries list!</strong></button>   
+                                </form>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-                <button type="submit" class="button-4" role="button"><strong>Add recipes to groceries list</strong></button>   
-            </form>
     </div>
 
     
