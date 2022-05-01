@@ -51,13 +51,6 @@
 
     ] -%}
 
-    
-
-    {% set protected_nav = [
-        ('/products', 'products', 'Products'),
-        ('/user/orders', 'user_orders', 'Orders'),
-      ] -%}
-
     {% set active_page = active_page|default('home') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">

@@ -10,7 +10,7 @@ from app import APP_ENV, APP_VERSION
 from app.firebase_service import FirebaseService
 
 from web_app.routes.home_routes import home_routes
-from web_app.routes.login_routes import login_routes
+# from web_app.routes.login_routes import login_routes
 from web_app.routes.recipe_routes import recipe_routes
 from web_app.routes.list_routes import list_routes
 from web_app.routes.help_routes import help_routes
@@ -71,7 +71,7 @@ def create_app():
 
     # ROUTES
     app.register_blueprint(home_routes)
-    app.register_blueprint(login_routes)
+    # app.register_blueprint(login_routes)
     app.register_blueprint(recipe_routes)
     app.register_blueprint(list_routes)
     app.register_blueprint(help_routes)
