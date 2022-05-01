@@ -30,30 +30,6 @@ def recipe_list():
     print(selection)
     print(email)
 
-    
-
-    # recipes= [{'name':'apple',
-    #            'picture': 'url',
-    #            'ingredients':
-    #                 [{'measure': '12 oz', 'name': 'Whiskey'},
-    #                 {'measure': '12 oz', 'name': 'Beer'},
-    #                 {'measure': '12 oz frozen', 'name': 'Lemonade'},
-    #                 {'measure': '1 cup crushed', 'name': 'Ice'}],
-    #             'instructions': 'paragraph of instructions',
-    #             'video_link' : 'url'},
-    #            {'name':'pasta',
-    #            'picture': 'url',
-    #            'ingredients':
-    #                 [{'measure': '12 oz', 'name': 'Whiskey'},
-    #                 {'measure': '12 oz', 'name': 'Beer'},
-    #                 {'measure': '12 oz frozen', 'name': 'Lemonade'},
-    #                 {'measure': '1 cup crushed', 'name': 'Ice'}],
-    #             'instructions': 'paragraph of instructions',
-    #             'video_link' : 'url'}
-    #          ]
-
-    #recipes = display_name(selection)
-
     if method == "By Category":
         recipes = display_category(selection)
     elif method == "By Nationality/Country of Origin":
@@ -94,7 +70,7 @@ def recipe_list():
             html += "<hr>"
         # html += "</ul>"
 
-        send_email(subject, html)
+        send_email(subject, html, email)
 
     return render_template("recipes_list.html", recipes=recipes)
    
