@@ -1,6 +1,6 @@
 # web_app/routes/recipe_routes.py
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, flash, redirect
 
 from pprint import pprint
 
@@ -21,7 +21,7 @@ def recipe_list():
     print("Recipe List...")
 
     form_data = dict(request.form)
-    print(form_data)
+    #print(form_data)
 
     method = form_data["method"]
     selection = form_data["selection"]
@@ -40,7 +40,7 @@ def recipe_list():
         recipes = display_random()
     #pprint(recipes)
 
-    #creating the HTML template 
+    #creating the HTML template and sending email
     if email:
         subject = "Custom Recipe List - Recipe Generator App Search"
         
@@ -72,22 +72,16 @@ def recipe_list():
 
         send_email(subject, html, email)
 
-    return render_template("recipes_list.html", recipes=recipes)
-   
-#     if request.method == "GET":
-#         print("URL PARAMS:", dict(request.args))
-#         request_data = dict(request.args)
-#     elif request.method == "POST": # the form will send a POST
-#         print("FORM DATA:", dict(request.form))
-#         request_data = dict(request.form)
-         
-#     country_code = request_data.get("country_code") or "US"
-#     zip_code = request_data.get("zip_code") or "20057"
+    
+    try:
+        if recipes:
+            flash(f"Recipe Search Successful!", "success")
+            return render_template("recipes_list.html", recipes=recipes)
+        else:
+            flash(f"Oops, something went wrong. Please correctly enter your inputs based on your instructions. You can refer to the Help Page to see the valid inputs. If an ingredient or recipe is in the help page but is still is procuding errors, please contact the Admin at 'kms475@georgetown.edu':", "warning")
+            return redirect("/home")
 
-#     results = get_hourly_forecasts(country_code=country_code, zip_code=zip_code)
-#     if results:
-#         flash("Weather Forecast Generated Successfully!", "success")
-#         return render_template("weather_forecast.html", country_code=country_code, zip_code=zip_code, results=results)
-#     else:
-#         flash("Geography Error. Please try again!", "danger")
-#         return redirect("/weather/form")
+    except Exception as err:
+        print(err)
+        flash(f"Oops, something went wrong: {err}", "warning")
+        return redirect("/home")

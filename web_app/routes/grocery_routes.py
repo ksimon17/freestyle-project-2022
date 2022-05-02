@@ -24,8 +24,11 @@ def orders():
     service = current_app.config["FIREBASE_SERVICE"]
 
     try:
-        service.create_grocery(user_email=current_user["email"], recipe_info=recipe_info)
-        flash(f"Grocery Added!", "success")
+        grocery = service.create_grocery(user_email=current_user["email"], recipe_info=recipe_info)
+        if not grocery:
+            flash(f"You've already added this recipe to your grocery list!", "warning")
+        else:
+            flash(f"Grocery Added!", "success")
         return redirect("/groceries")
     except Exception as err:
         print(err)
