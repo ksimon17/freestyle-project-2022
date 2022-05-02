@@ -114,7 +114,6 @@ def display_category(category):
   #pprint(recipes_list)
   return recipes_list
 
-
 # PRINT RECIPES BASED ON NATIONALITY/AREA
 def display_area(area):
   area_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?a={area}'
@@ -142,7 +141,7 @@ def display_area(area):
 # PRINT 10 RECIPES RANDOMLY 
 def display_random():
   recipes_list = []
-  for x in range (1,10):
+  for x in range (0,10):
     random_url = "https://www.themealdb.com/api/json/v1/1/random.php"
     random = read_data(random_url)
     
@@ -228,28 +227,33 @@ if __name__ == "__main__":
     ingredient = "chicken"
 
 
+    # data = read_data(f'https://www.themealdb.com/api/json/v1/1/search.php?s=Tunisian%20Orange%20Cake')
+    # print(data)
     # display_name(name)
     # display_category(category)
     # display_area(area)
 
     #recipes = display_category(selection)
-   # recipes = display_name(name)
+    #recipes = display_name(name)
     #recipes = display_area(area)
-    #recipes = display_random()
-    #recipes = display_ingredient(ingredient)
-   # pprint(recipes)
+    recipes = display_random()
+    # recipes = display_ingredient(ingredient)
+    #print(recipes)
+    pprint(recipes)
 
     # categories = fetch_categories()
     # print(categories)
     # nationalities = fetch_nationalities()
     # print(nationalities)
-    #ingredients = fetch_ingredients()
-    #print(ingredients)
+    # ingredients = fetch_ingredients()
+    # print(ingredients)
     # recipe_name = "Arrabiata"
     # category = fetch_recipe_category(recipe_name)
     # area = fetch_recipe_area(recipe_name)
+    # url = fetch_recipe_url(recipe_name)
     # print(category)
     # print(area)
+    # print(url)
     
 
   
