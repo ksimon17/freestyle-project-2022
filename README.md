@@ -1,5 +1,7 @@
 # Recipe Generator and Nutrition App - Freestyle Project (Python)
 
+Welcome to the repository of the Recipe Generator App! Please follow the instructions below to implement this program on your own.
+
 # Installation/Setup 
 
 Navigate to an appropriate space on your Desktop to store your code:
@@ -18,7 +20,7 @@ Then, within an active virtual environment, install package dependencies:
 pip install -r requirements.txt
 ```
 
-# Configuration 
+# Setup 
 
 ## SendGrid API Key Setup
 
@@ -79,8 +81,9 @@ From the [Google API Credentials](https://console.cloud.google.com/apis/credenti
 
 For the chosen service account, create new JSON credentials file as necessary from the "Keys" menu, then download the resulting JSON file into the root directory of this repo, specifically named "google-credentials.json".
 
+# Configuration
 
-# Configuration Environment Variables - ".env" File Approach
+## Environment Variables - ".env" File Approach
 You must set up a local file named ".env" that is outside the root directory of the project. In this file, you will be able to store the necessary environment variables to run the program. For the purposes of the shopping-cart program, the following code will suffice:
 ```sh
 # this is the .env file
@@ -98,13 +101,29 @@ GOOGLE_CLIENT_SECRET="___________"
 # Google Analytics
 GA_TRACKER_ID="UA-XXXXXXX-1"
 ```
-Note that you will need to update the values of the SendGrid environment variables to meet your specific API key and email address that you created in your SendGrid account (instructions for that mentioned in the "SendGrid API Key Setup" Section)
+Note that you will need to update the values above variables to match the API keys and credentials that you create after following the instructions in the Setup section above. 
 
+## Usage
+
+### Firebase Service
+
+After configuring the Firestore database and populating it with products, you should be able to test out the app's ability to fetch products (and generate new orders):
+
+```sh
+python -m app.firebase_service
+```
+
+### Web Application
+
+You can also run the app on your local web server (then visit localhost:5000 in a browser) via the following code in terminal:
+
+```sh
+FLASK_APP=web_app flask run
+```
 
 ## Deploying
 
 See the [Deployer's Guide](/DEPLOYING.md) for instructions on deploying to a production server hosted by Heroku.
-
 
 
 ## [License](/LICENSE.md)
