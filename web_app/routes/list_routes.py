@@ -14,7 +14,7 @@ list_routes = Blueprint("list_routes", __name__)
 def orders():
     print("List...")
 
-    print("USER ORDERS...")
+    print("USER RECIPES...")
     current_user = session.get("current_user")
     service = current_app.config["FIREBASE_SERVICE"]
     recipes = service.fetch_user_recipes(current_user["email"])
