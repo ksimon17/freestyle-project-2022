@@ -17,7 +17,8 @@
                     <th scope="col">Picture</th>
                     <th scope="col">Food Category</th>
                     <th scope="col">Nationality/Country of Origin</th>
-                    <th scope="col">Check to Add to Grocery List</th>
+                    <th scope="col">Click to View Recipe</th>
+                    <th scope="col">Click to Add to Grocery List</th>
                 </tr>
             </thead>
            
@@ -40,6 +41,12 @@
                         </td>
                         <td>
                             {{recipe["recipe_info"]["area"]}}
+                        </td>
+                        <td>
+                            <form method="POST" action="/list/recipe" style="display: inline;">
+                                <input type="hidden" name="recipe_name" value="{{ recipe['recipe_info']['name'] }}">
+                                <button type="submit" class="button-4" role="button"><strong>View Recipe!</strong></button>   
+                                </form>
                         </td>
                         <td>
                             <form method="POST" action="/groceries/create" style="display: inline;">

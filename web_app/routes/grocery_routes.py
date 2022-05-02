@@ -11,12 +11,12 @@ grocery_routes = Blueprint("grocery_routes", __name__)
 def orders():
 
     form_data = dict(request.form)
-    print(form_data)
+    # print(form_data)
 
     recipe_info = {
         "name": form_data["recipe_name"]
     }
-    print(recipe_info)
+    # print(recipe_info)
     current_user = session.get("current_user")
 
     service = current_app.config["FIREBASE_SERVICE"]
@@ -38,9 +38,9 @@ def groceries():
     service = current_app.config["FIREBASE_SERVICE"]
     groceries = service.fetch_user_groceries(current_user["email"])
 
-    print(groceries)
+    # print(groceries)
 
-    print(type(groceries))
+    # print(type(groceries))
 
 
     list_of_groceries = []
@@ -50,7 +50,7 @@ def groceries():
         info = display_name(name)
         list_of_groceries.append(info)
     
-    print(list_of_groceries)
+    # print(list_of_groceries)
 
 
     return render_template("groceries.html",list_of_groceries=list_of_groceries)
