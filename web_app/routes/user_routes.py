@@ -49,7 +49,7 @@ def create_order():
     except Exception as err:
         print(err)
         flash(f"Oops, something went wrong: {err}", "warning")
-        return redirect("/products")
+        return redirect("/home")
 
 
 #

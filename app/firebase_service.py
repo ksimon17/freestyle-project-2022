@@ -56,14 +56,18 @@ class FirebaseService:
             recipe_info (dict) with name, category, area (i.e., nationality), and picture URL
 
         """
-        new_grocery_ref = self.groceries_ref.document() # new document with auto-generated id
-        new_grocery = {
-            "user_email": user_email,
-            "recipe_info": recipe_info,
-            "recipe_at": generate_timestamp()
-        }
-        results = new_grocery_ref.set(new_grocery)
-        return new_grocery, results
+        # print("recipe_info['name']:", recipe_info["name"])
+        if self.grocery_check(recipe_info["name"]) == "exists":
+            return
+        else:
+            new_grocery_ref = self.groceries_ref.document() # new document with auto-generated id
+            new_grocery = {
+                "user_email": user_email,
+                "recipe_info": recipe_info,
+                "recipe_at": generate_timestamp()
+            }
+            results = new_grocery_ref.set(new_grocery)
+            return new_grocery, results
 
     def create_recipe(self, user_email, recipe_info):
         """
@@ -75,25 +79,44 @@ class FirebaseService:
             recipe_info (dict) with name, category, area (i.e., nationality), and picture URL
 
         """
-        new_recipe_ref = self.recipes_ref.document() # new document with auto-generated id
-        new_recipe = {
-            "user_email": user_email,
-            "recipe_info": recipe_info,
-            "recipe_at": generate_timestamp()
-        }
-        results = new_recipe_ref.set(new_recipe)
-        #print(results) #> {update_time: {seconds: 1648419942, nanos: 106452000}}
-        return new_recipe, results
+        # print("recipe_info['name']:", recipe_info["name"])
+        if self.recipe_check(recipe_info["name"]) == "exists":
+            return
+        else:
+            new_recipe_ref = self.recipes_ref.document() # new document with auto-generated id
+            new_recipe = {
+                "user_email": user_email,
+                "recipe_info": recipe_info,
+                "recipe_at": generate_timestamp()
+            }
+            results = new_recipe_ref.set(new_recipe)
+            #print(results) #> {update_time: {seconds: 1648419942, nanos: 106452000}}
+            return new_recipe, results
 
-    # DON'T THINK I USE THIS FUNCTION
+    
     def fetch_recipes(self):
         recipes = [doc.to_dict() for doc in self.recipes_ref.stream()]
         return recipes
 
-    # DON'T THINK I USE THIS FUNCTION
+    def recipe_check(self, recipe_name):
+        recipes = self.fetch_recipes()
+        print ("recipe_name:", recipe_name)
+        for recipe in recipes:
+            print("recipe['recipe_info']['name']:", recipe["recipe_info"]["name"])
+            if recipe["recipe_info"]["name"] == recipe_name:
+                return "exists"
+        return "does not exist"
+    
     def fetch_groceries(self):
         groceries = [doc.to_dict() for doc in self.groceries_ref.stream()]
         return groceries
+    
+    def grocery_check(self, grocery_name):
+        groceries = self.fetch_groceries()
+        for grocery in groceries:
+            if grocery["recipe_info"]["name"] == grocery_name:
+                return "exists"
+        return "does not exist"
 
 
     def fetch_user_groceries(self, user_email):
@@ -159,19 +182,23 @@ if __name__ == "__main__":
     # pprint(products)
 
     print("-----------")
-    print("ORDERS...")
-    orders = service.fetch_orders()
-    print(len(orders))
+    print("RECIPES...")
+    recipes = service.fetch_recipes()
+    print(recipes)
+    print(len(recipes))
+
+    recipe = service.recipe_check("Soy-Glazed Meatloaves with Wasabi Mashed Potatoes & Roasted Carrots")
+    print(recipe)
 
     print("-----------")
-    print("NEW ORDER...")
+    print("NEW RECIPE...")
     #product = products[0]
     product = "orange"
     email_address = input("Email Address: ") or "hello@example.com"
-    new_order, results = service.create_order(email_address, product)
-    pprint(new_order)
+    new_recipe, results = service.create_recipe(email_address, product)
+    pprint(new_recipe)
 
     print("-----------")
-    print("USER ORDERS...")
-    user_orders = service.fetch_user_orders(email_address)
-    print(len(user_orders))
+    print("USER RECIPES...")
+    user_recipes = service.fetch_user_recipes(email_address)
+    print(len(user_recipes))
