@@ -1,0 +1,33 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "grocery/recipe" %}
+
+{% block content %}
+
+    <h1>Recipe: {{ recipe["name"] }}</h1>
+
+    <hr>
+    <br>
+    <img 
+        src={{recipe["picture_url"]}}
+        alt="Picture" 
+        width="400" 
+        height="233"
+    >
+    <br>
+    <br>
+    <h class="ingredients"><strong>Ingredients</strong></h>
+    <ul> 
+        {% for ingredient in recipe["ingredients"]%}
+            <li>{{ingredient["name"]}} ({{ingredient["measure"]}})</li> 
+        {% endfor %}
+    </ul>
+    <br>
+    <p> <strong>Instructions:</strong> {{recipe["instructions"]}}</p>
+    <h> <strong>Video Link:</strong> <a href="{{recipe['video_url']}}">{{recipe["video_url"]}}</a></h>
+    <br> 
+    <br> 
+
+    <hr>
+
+
+{% endblock %}

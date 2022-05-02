@@ -14,10 +14,10 @@ def index():
     print("HELP...")
 
     nationalities = fetch_nationalities()
-    print("Nationalities:", nationalities)
+    # print("Nationalities:", nationalities)
     categories = fetch_categories()
-    print("Categories: ",categories)
+    # print("Categories: ",categories)
     ingredients = fetch_ingredients()
-    print("Ingredients:", ingredients)
+    # print("Ingredients:", ingredients)
 
     return render_template("help.html",nationalities=nationalities, categories=categories, ingredients=ingredients)

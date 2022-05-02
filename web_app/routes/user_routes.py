@@ -9,7 +9,7 @@ user_routes = Blueprint("user_routes", __name__)
 # USER ORDERS
 #
 
-@user_routes.route("/user/orders")
+@user_routes.route("/user/orders") # I DON'T THINK I USED THIS 
 @authenticated_route
 def orders():
     print("USER RECIPES...")
@@ -25,11 +25,11 @@ def create_order():
     print("CREATE USER RECIPES...")
 
     form_data = dict(request.form)
-    print("FORM DATA:", form_data)
-    print("name:",form_data["recipe_name"])
-    print("picture_url:", form_data["picture_url"])
-    print("area:", form_data["area"])
-    print("category:", form_data["category"])
+    # print("FORM DATA:", form_data)
+    # print("name:",form_data["recipe_name"])
+    # print("picture_url:", form_data["picture_url"])
+    # print("area:", form_data["area"])
+    # print("category:", form_data["category"])
     recipe_info = {
         "name": form_data["recipe_name"],
         "picture_url": form_data["picture_url"],
