@@ -4,7 +4,7 @@ import requests, json, os
 from pprint import pprint
 from IPython.display import Image, display 
 
-# FUNCTION TO CONVERT API DATA TO A MORE ACCESSIBLE FORMAT - PARAM COMMENT MADE
+# FUNCTION TO CONVERT API DATA TO A MORE ACCESSIBLE FORMAT - PARAM COMMENT MADE 
 def read_data(url):
   """
   This function fetches JSON data from the MealDB API and converts its to a Python Dictionary 
@@ -54,7 +54,7 @@ def display_recipe(recipe):
     print("Video Link:", video)
   print("---------------------")
 
-# FUNCTION TO CONVERT A RECIPE DATA TO A MORE READABLE AND APPLICABLE DICTIONARY - PARAM COMMENT MADE
+# FUNCTION TO CONVERT A RECIPE DATA TO A MORE READABLE AND APPLICABLE DICTIONARY 
 def convert_to_dict(recipe):
   """
   This function takes a dictionary of data of a recipe from the MealDB API database , takes the necessary information, and 
@@ -102,7 +102,7 @@ def convert_to_dict(recipe):
   #pprint(recipes)
   return recipes
 
-# PRINT RECIPES BY NAME - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FUNCTION TO RETURN A DICTIONARY OF RECIPE INFORMATION BASED OFF OF THE RECIPE'S NAME 
 def display_name(name):
   """
   This function takes in a recipe name and returns a useful dictionary of that recipe's information.
@@ -121,7 +121,7 @@ def display_name(name):
   #pprint(recipes)
   return recipes
 
-# PRINTING OUT RECIPES BY FOOD CATEGORY - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FUNCTION TO RETURN A LIST OF DICTIONARIES OF RECIPE INFORMATION FOR RECIPES IN A PARTICULAR CATEGORY (e.g., Seafood)
 def display_category(category): 
   """
   This function takes in a recipe category and returns a list of dictionaries which contain information for recipes in that
@@ -161,7 +161,7 @@ def display_category(category):
   #pprint(recipes_list)
   return recipes_list
 
-# PRINT RECIPES BASED ON NATIONALITY/AREA - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FUNCTION TO RETURN A LIST OF DICTIONARIES OF RECIPE INFORMATION FOR RECIPES IN A PARTICULAR NATIONALITY (e.g., Italian)
 def display_area(area):
   """
   This function takes in the name of a country/nationality and returns a list of dictionaries 
@@ -199,7 +199,7 @@ def display_area(area):
     recipes_list.append(recipe)
   return recipes_list
 
-# PRINT 10 RECIPES RANDOMLY - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FUNCTION TO RETURN A LIST OF DICTIONARIES OF RECIPE INFORMATION FOR 10 RANDOMLY SELECTED RECIPES
 def display_random():
   """
   This function returns a list of dictionaries which contain information for 10 random recipes in the MealDB API database
@@ -229,7 +229,7 @@ def display_random():
     recipes_list.append(recipe)
   return recipes_list
 
-# PRINT RECIPES BASED ON INGREDIENT - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FUNCTION TO RETURN A LIST OF DICTIONARIES OF RECIPE INFORMATION FOR RECIPES CONTAINING A PARTICULAR INGREDIENT (e.g., chicken)
 def display_ingredient(ingredient):
   """
   This function takes in an ingredients and returns a list of dictionaries which contain information for all recipes in the 
@@ -258,7 +258,7 @@ def display_ingredient(ingredient):
     recipes_list.append(recipe)
   return recipes_list
 
-# FETCH ALL POSSIBLE CATEGORIES - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ALL POSSIBLE CATEGORIES IN MEALlDB API DATABASE
 def fetch_categories():
   """
   This function fetches data from the MealDB API database and returns a list of all of the valid categories of Food 
@@ -280,7 +280,7 @@ def fetch_categories():
   
   return categories
 
-# FETCH ALL POSSIBLE FOOD NATIONALITIES - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ALL POSSIBLE FOOD NATIONALITIES IN MEALlDB API DATABASE
 def fetch_nationalities():
   """
   This function fetches data from the MealDB API database and returns a list of all of the valid nationalities of food 
@@ -302,7 +302,7 @@ def fetch_nationalities():
 
   return nationalities
 
-# FETCH ALL POSSIBLE INGREDIENTS - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ALL POSSIBLE INGREDIENTS IN MEALlDB API DATABASE
 def fetch_ingredients():
   """
   This function fetches data from the MealDB API database and returns a list of all of the valid ingredients of food 
@@ -323,7 +323,7 @@ def fetch_ingredients():
     ingredients.append(ingredient["strIngredient"])
   return ingredients
 
-# FETCH ONLY THE CATEGORY OF A RECIPE BASED ON ITS NAME - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ONLY THE CATEGORY OF A RECIPE BASED ON ITS NAME 
 def fetch_recipe_category(recipe_name):
   """
   This function fetches the category of a recipe from the MealDB API database based on its name
@@ -341,7 +341,7 @@ def fetch_recipe_category(recipe_name):
   category = recipe["meals"][0]["strCategory"]
   return category
 
-# FETCH ONLY THE NATIONALITY/COUNTRY OF ORIGIN OF A RECIPE BASED ON ITS NAME - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ONLY THE NATIONALITY/COUNTRY OF ORIGIN OF A RECIPE BASED ON ITS NAME 
 def fetch_recipe_area(recipe_name):
   """
   This function fetches the nationality/country of origin of a recipe from the MealDB API database based on its name
@@ -358,7 +358,7 @@ def fetch_recipe_area(recipe_name):
   area = recipe["meals"][0]["strArea"]
   return area
 
-# FETCH ONLY THE PICTURE URL OF A RECIPE BASED ON ITS NAME - PARAM COMMENT MADE - CHANGE THIS COMMENT
+# FETCH ONLY THE PICTURE URL OF A RECIPE BASED ON ITS NAME 
 def fetch_recipe_url(recipe_name):
   """
   This function fetches the picture URL of a recipe from the MealDB API database based on its name
@@ -384,33 +384,33 @@ if __name__ == "__main__":
     ingredient = "chicken"
 
 
-    # data = read_data(f'https://www.themealdb.com/api/json/v1/1/search.php?s=Tunisian%20Orange%20Cake')
-    # print(data)
-    # display_name(name)
-    # display_category(category)
-    # display_area(area)
+    # # data = read_data(f'https://www.themealdb.com/api/json/v1/1/search.php?s=Tunisian%20Orange%20Cake')
+    # # print(data)
+    # # display_name(name)
+    # # display_category(category)
+    # # display_area(area)
 
-    #recipes = display_category(selection)
-    #recipes = display_name(name)
-    #recipes = display_area(area)
-    recipes = display_random()
-    # recipes = display_ingredient(ingredient)
-    #print(recipes)
-    pprint(recipes)
+    # #recipes = display_category(selection)
+    # #recipes = display_name(name)
+    # #recipes = display_area(area)
+    # recipes = display_random()
+    # # recipes = display_ingredient(ingredient)
+    # #print(recipes)
+    # pprint(recipes)
 
-    # categories = fetch_categories()
-    # print(categories)
-    # nationalities = fetch_nationalities()
-    # print(nationalities)
-    # ingredients = fetch_ingredients()
-    # print(ingredients)
-    # recipe_name = "Arrabiata"
-    # category = fetch_recipe_category(recipe_name)
-    # area = fetch_recipe_area(recipe_name)
-    # url = fetch_recipe_url(recipe_name)
-    # print(category)
-    # print(area)
-    # print(url)
+    # # categories = fetch_categories()
+    # # print(categories)
+    # # nationalities = fetch_nationalities()
+    # # print(nationalities)
+    # # ingredients = fetch_ingredients()
+    # # print(ingredients)
+    # # recipe_name = "Arrabiata"
+    # # category = fetch_recipe_category(recipe_name)
+    # # area = fetch_recipe_area(recipe_name)
+    # # url = fetch_recipe_url(recipe_name)
+    # # print(category)
+    # # print(area)
+    # # print(url)
     
 
   

@@ -14,8 +14,12 @@ SENDER_EMAIL_ADDRESS = os.getenv("SENDER_EMAIL_ADDRESS")
 def send_email(subject="[Daily Briefing] This is a test", html="<p>Hello World</p>", recipient_address=SENDER_EMAIL_ADDRESS):
     """
     Sends an email with the specified subject and html contents to the specified recipient,
-
     If recipient is not specified, sends to the admin's sender address by default.
+
+    Params:
+        subject (str) -- the subject of the email
+        html (str) -- the html body of the email
+        recipient_address (str) -- the email address of the recipient (will default to the admin's sender address if not specified)
     """
     client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
     print("CLIENT:", type(client))
