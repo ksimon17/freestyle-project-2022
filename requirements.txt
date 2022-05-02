@@ -18,3 +18,5 @@ Authlib==1.0.0
 
 # database (cloud firestore):
 firebase-admin==5.0.0
+
+pytest
