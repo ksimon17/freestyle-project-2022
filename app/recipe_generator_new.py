@@ -18,42 +18,6 @@ def read_data(url):
   data = json.loads(response.text)
   return data
 
-# FUNCTION TO PRINT THE RECIPE'S NAME AND PICTURE - DON'T THINK I USE THIS
-def display_name_pics(data):
-  print(data["strMeal"])
-  display(Image(url=data["strMealThumb"], height=100))
-
-# FUNCTION TO MORE EFFICIENTLY DISPLAY OUTPUT - DON'T THINK I USE THIS
-def display_recipe(recipe):
-  
-  # PRINT LIST OF INGREDIENTS
-  print("---------------------")   
-  print("List of Ingredients")
-  print("---------------------")
-  for x in range (1,19):
-      #define variables
-      ingredientString = f'strIngredient{x}'
-      measureString = f'strMeasure{x}'
-      ingredient = recipe["meals"][0][ingredientString] 
-      measure = recipe["meals"][0][measureString]
-
-      # PRINT INGREDIENT IF IT EXISTS
-      if ingredient:
-        print(ingredient, "(" + measure + ")")
-  print("---------------------")  
-
-  # PRINT THE RECIPE INSTRUCTIONS
-  print("Instructions")
-  print("---------------------")
-  print(recipe["meals"][0]["strInstructions"])
-  print("---------------------")
-
-  # PRINT CORRESPONDING VIDEO IF IT EXISTS
-  video = recipe["meals"][0]["strYoutube"]
-  if video:
-    print("Video Link:", video)
-  print("---------------------")
-
 # FUNCTION TO CONVERT A RECIPE DATA TO A MORE READABLE AND APPLICABLE DICTIONARY 
 def convert_to_dict(recipe):
   """
@@ -117,6 +81,7 @@ def display_name(name):
   """
   recipe_url = f'https://www.themealdb.com/api/json/v1/1/search.php?s={name}'
   recipe = read_data(recipe_url)
+
   recipes = convert_to_dict(recipe)
   #pprint(recipes)
   return recipes
@@ -139,6 +104,10 @@ def display_category(category):
 
   category_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?c={category}'
   category = read_data(category_url)
+  
+
+  if not category["meals"]:
+    return None 
 
   #print(category)
   #meals = []
@@ -179,6 +148,10 @@ def display_area(area):
   """
   area_url = f'https://www.themealdb.com/api/json/v1/1/filter.php?a={area}'
   area = read_data(area_url)
+
+  if not area["meals"]:
+    return None 
+
 
   recipes_list = []
   for meal in area["meals"]:
@@ -246,6 +219,9 @@ def display_ingredient(ingredient):
   """
   ingredient_url=f'https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}'
   ingredient = read_data(ingredient_url)
+
+  if not ingredient["meals"]:
+    return None
 
   recipes_list = []
   for meal in ingredient["meals"]:

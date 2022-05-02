@@ -8,7 +8,6 @@ from operator import itemgetter
 from firebase_admin import credentials, initialize_app, firestore
 
 CREDENTIALS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "google-credentials.json")
-print("credential filepath")
 
 def generate_timestamp():
     return datetime.now(tz=timezone.utc) #returns the current time stamp
@@ -58,7 +57,7 @@ class FirebaseService:
         """
         # print("recipe_info['name']:", recipe_info["name"])
         if self.grocery_check(recipe_info["name"]) == "exists":
-            return
+            return None
         else:
             new_grocery_ref = self.groceries_ref.document() # new document with auto-generated id
             new_grocery = {
@@ -81,7 +80,7 @@ class FirebaseService:
         """
         # print("recipe_info['name']:", recipe_info["name"])
         if self.recipe_check(recipe_info["name"]) == "exists":
-            return
+            return None
         else:
             new_recipe_ref = self.recipes_ref.document() # new document with auto-generated id
             new_recipe = {
