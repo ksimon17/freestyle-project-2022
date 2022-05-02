@@ -68,6 +68,7 @@ def recipe():
     return render_template("grocery_recipe.html",recipe=recipe)
 
 @grocery_routes.route("/groceries/email",methods=["POST"])
+@authenticated_route
 def email():
     print("/groceries/email")
 
@@ -115,8 +116,6 @@ def email():
         html += "<br>"
         html += "<hr>"
 
-    send_email(subject, html)
-
-
+    send_email(subject, html, current_user["email"])
 
     return redirect("/home")
