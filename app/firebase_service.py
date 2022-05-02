@@ -1,4 +1,4 @@
-
+# app/firebase_service.py
 
 import os
 from pprint import pprint
@@ -11,7 +11,7 @@ CREDENTIALS_FILEPATH = os.path.join(os.path.dirname(__file__), "..", "google-cre
 print("credential filepath")
 
 def generate_timestamp():
-    return datetime.now(tz=timezone.utc)
+    return datetime.now(tz=timezone.utc) #returns the current time stamp
 
 
 class FirebaseService:
@@ -47,6 +47,15 @@ class FirebaseService:
         return self.db.collection("groceries")
 
     def create_grocery(self, user_email, recipe_info):
+        """
+        This function creates and stores a new grocery in a Cloud Firestore Database named "groceries"
+        Params :
+
+            user_email (str)
+
+            recipe_info (dict) with name, category, area (i.e., nationality), and picture URL
+
+        """
         new_grocery_ref = self.groceries_ref.document() # new document with auto-generated id
         new_grocery = {
             "user_email": user_email,
@@ -58,11 +67,12 @@ class FirebaseService:
 
     def create_recipe(self, user_email, recipe_info):
         """
+        This function creates and stores a new recipe in a Cloud Firestore Database named "recipes"
         Params :
 
             user_email (str)
 
-            recipe_info (dict) with name, category, and area
+            recipe_info (dict) with name, category, area (i.e., nationality), and picture URL
 
         """
         new_recipe_ref = self.recipes_ref.document() # new document with auto-generated id
@@ -75,15 +85,25 @@ class FirebaseService:
         #print(results) #> {update_time: {seconds: 1648419942, nanos: 106452000}}
         return new_recipe, results
 
+    # DON'T THINK I USE THIS FUNCTION
     def fetch_recipes(self):
         recipes = [doc.to_dict() for doc in self.recipes_ref.stream()]
         return recipes
 
+    # DON'T THINK I USE THIS FUNCTION
     def fetch_groceries(self):
         groceries = [doc.to_dict() for doc in self.groceries_ref.stream()]
         return groceries
 
+
     def fetch_user_groceries(self, user_email):
+        """
+        This function fetches a user's groceries from a Cloud Firestore Database named "groceries" based off their email
+        Params :
+
+            user_email (str)
+
+        """
         query_ref = self.groceries_ref.where("user_email", "==", user_email)
         docs = list(query_ref.stream())
         groceries = []
@@ -98,6 +118,13 @@ class FirebaseService:
         return groceries
 
     def fetch_user_recipes(self, user_email):
+        """
+        This function fetches a user's saved recipes from a Cloud Firestore Database named "recipes" based off their email
+        Params :
+
+            user_email (str)
+            
+        """
         query_ref = self.recipes_ref.where("user_email", "==", user_email)
 
         # sorting requires configuration of a composite index on the "recipes" collection,
