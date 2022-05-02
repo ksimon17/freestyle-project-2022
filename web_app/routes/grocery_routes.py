@@ -45,7 +45,7 @@ def groceries():
 
     list_of_groceries = []
     for grocery in groceries:
-        print(grocery["recipe_info"]["name"])
+        #print(grocery["recipe_info"]["name"])
         name = grocery["recipe_info"]["name"]
         info = display_name(name)
         list_of_groceries.append(info)
