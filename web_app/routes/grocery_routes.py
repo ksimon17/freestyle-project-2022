@@ -55,3 +55,12 @@ def groceries():
 
     return render_template("groceries.html",list_of_groceries=list_of_groceries)
 
+@grocery_routes.route("/groceries/recipe",methods=["POST"])
+def recipe():
+    print("/groceries/recipe")
+
+    form_data = dict(request.form)
+    grocery_name = form_data["grocery_name"]
+    recipe = display_name(grocery_name)
+
+    return render_template("grocery_recipe.html",recipe=recipe)

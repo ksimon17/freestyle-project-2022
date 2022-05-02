@@ -12,6 +12,7 @@
                     <th scope="col">Recipe Name</th>
                     <th scope="col">Picture</th>
                     <th scope="col">Ingredients</th>
+                    <th scope="col">Click to View Recipe!</th>
                 </tr>
             </thead>
                 <tbody>
@@ -32,6 +33,12 @@
                             {% for ingredient in grocery["ingredients"]%}
                                 {{ingredient["name"]}} ({{ingredient["measure"]}}),
                             {% endfor %}
+                        </td>
+                        <td>
+                            <form method="POST" action="/groceries/recipe" style="display: inline;">
+                                <input type="hidden" name="grocery_name" value="{{ grocery['name'] }}">
+                                <button type="submit" class="button-4" role="button"><strong>View Recipe!</strong></button>   
+                                </form>
                         </td>
                     </tr>
                     {% endfor %}
