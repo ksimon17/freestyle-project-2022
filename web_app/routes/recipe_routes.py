@@ -7,10 +7,13 @@ from pprint import pprint
 from app.recipe_generator_new import display_category, display_area, display_name, display_random, display_ingredient, fetch_recipe_area, fetch_recipe_category
 from app.email_service import send_email
 
+from web_app.routes.wrappers import authenticated_route
+
 recipe_routes = Blueprint("recipe_routes", __name__)
 
 @recipe_routes.route("/")
 @recipe_routes.route("/recipes")
+@authenticated_route
 def index():
     print("Recipe...")
     return render_template("recipes.html")
