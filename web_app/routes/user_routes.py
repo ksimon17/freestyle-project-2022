@@ -36,7 +36,8 @@ def create_order():
 
 
     try:
-        result = service.create_recipe(user_email=current_user["email"], recipe_info=recipe_info)
+        #result = service.create_recipe(user_email=current_user["email"], recipe_info=recipe_info)
+        result = service.create_firebase_document(user_email=current_user["email"], recipe_info=recipe_info, type="recipes")
         if not result:
             flash(f"You've already added this recipe to your list!", "warning")
         else:

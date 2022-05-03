@@ -24,7 +24,8 @@ def orders():
     service = current_app.config["FIREBASE_SERVICE"]
 
     try:
-        grocery = service.create_grocery(user_email=current_user["email"], recipe_info=recipe_info)
+        #grocery = service.create_grocery(user_email=current_user["email"], recipe_info=recipe_info)
+        grocery = service.create_firebase_document(user_email=current_user["email"], recipe_info=recipe_info, type="groceries")
         if not grocery:
             flash(f"You've already added this recipe to your grocery list!", "warning")
         else:
@@ -41,7 +42,8 @@ def orders():
 def groceries():
     current_user = session.get("current_user")
     service = current_app.config["FIREBASE_SERVICE"]
-    groceries = service.fetch_user_groceries(current_user["email"])
+    # groceries = service.fetch_user_groceries(current_user["email"])
+    groceries = service.fetch_user_items(current_user["email"], type="groceries")
 
     # print(groceries)
 
@@ -77,9 +79,10 @@ def email():
 
     current_user = session.get("current_user")
     service = current_app.config["FIREBASE_SERVICE"]
-    groceries = service.fetch_user_groceries(current_user["email"])
+    # groceries = service.fetch_user_groceries(current_user["email"])
+    groceries = service.fetch_user_items(current_user["email"], type="groceries")
     
-    
+    # develop list of dictionaries containing the name and ingredients of each recipe in a user's grocery list
     groceries_list = []
     for recipe in groceries:
         recipe_name = recipe["recipe_info"]["name"]
@@ -95,19 +98,24 @@ def email():
         }
         groceries_list.append(grocery)
 
-    print(groceries_list)
+   # print(groceries_list)
 
+
+    # Creating the email of the user's grocery list 
+    
+
+    # Creating the subject of the email    
     subject = "Grocery List Reminder - Recipe Generator App"
 
-     #creating the HTML template 
+     #creating HTML body of hte email
     html = ""
     html += f"<h2><strong>Grocery List Reminder!</strong></h2>"
     html += "<hr>"
     html += "<br>"
     html += f"<p>Hello! Here is the grocery list provided by the Recipe Generator App. Please find the ingredients for your groceries below!</p>"
     html += "<br>"
-    # html += "<ul>"
     
+    # Iterating through each recipe in the grocery and display their name, ingredients, and accompanying measures
     for grocery in groceries_list:
         html += f"<h2><strong> {grocery['name']}</strong> </h2>"
         html += "<br>"
@@ -119,6 +127,7 @@ def email():
         html += "<br>"
         html += "<hr>"
 
+    # Send the email to the user 
     send_email(subject, html, current_user["email"])
 
     return redirect("/home")
