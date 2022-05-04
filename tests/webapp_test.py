@@ -24,20 +24,23 @@ def test_about(test_client):
     assert response.status_code == 200
     assert b"<h1>Application Overview</h1>" in response.data
 
-# def test_recipes(test_client):
-#     response = test_client.get("/recipes")
-#     assert response.status_code == 200
-#     assert b"Recipe Generator" in response.data
+@pytest.mark.skipif(os.getenv("CI")=="true", reason="will not pass because local google credential files is not on Github/any server")
+def test_recipes(test_client):
+    response = test_client.get("/recipes")
+    assert response.status_code == 302
+    assert b"login" in response.data
 
-# def test_groceries(test_client):
-#     response = test_client.get("/groceries")
-#     assert response.status_code == 200
-#     assert b"Personal Grocery List" in response.data
+@pytest.mark.skipif(os.getenv("CI")=="true", reason="will not pass because local google credential files is not on Github/any server")
+def test_groceries(test_client):
+    response = test_client.get("/groceries")
+    assert response.status_code == 302
+    assert b"login" in response.data
 
-# def test_list(test_client):
-#     response = test_client.get("/list")
-#     assert response.status_code == 200
-#     assert b"Custom Recipe List" in response.data
+@pytest.mark.skipif(os.getenv("CI")=="true", reason="will not pass because local google credential files is not on Github/any server")
+def test_list(test_client):
+    response = test_client.get("/list")
+    assert response.status_code == 302
+    assert b"login" in response.data
 
 @pytest.mark.skipif(os.getenv("CI")=="true", reason="will not pass because local google credential files is not on Github/any server")
 def test_help(test_client):
