@@ -18,10 +18,10 @@ def test_about(test_client):
     assert response.status_code == 200
     assert b"<h1>Application Overview</h1>" in response.data
 
-def test_recipes(test_client):
-    response = test_client.get("/recipes")
-    assert response.status_code == 200
-    assert b"Recipe Generator" in response.data
+# def test_recipes(test_client):
+#     response = test_client.get("/recipes")
+#     assert response.status_code == 200
+#     assert b"Recipe Generator" in response.data
 
 # def test_groceries(test_client):
 #     response = test_client.get("/groceries")
