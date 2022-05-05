@@ -53,7 +53,7 @@ class FirebaseService:
             type (str)
 
         """
-        print("Hello")
+        # print("Hello")
         if type == "groceries":
             if self.grocery_check(recipe_info["name"]) == "exists":
                 return None
@@ -175,6 +175,7 @@ class FirebaseService:
             user_email (str)
 
         """
+        #print ("in fetch_user_items")
         if type == "groceries":
             query_ref = self.groceries_ref.where("user_email", "==", user_email)
             docs = list(query_ref.stream())
@@ -189,6 +190,7 @@ class FirebaseService:
             groceries = sorted(groceries, key=itemgetter("recipe_at"), reverse=True)
             return groceries
         elif type == "recipes":
+            #print ("type == recipes")
             query_ref = self.recipes_ref.where("user_email", "==", user_email)
 
             # sorting requires configuration of a composite index on the "recipes" collection,
