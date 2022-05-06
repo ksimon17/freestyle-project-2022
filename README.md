@@ -1,6 +1,6 @@
 # Recipe Generator and Nutrition App - Freestyle Project (Python)
 
-Welcome to the repository of the Recipe Generator App! Please follow the instructions below to implement this program on your own.
+Welcome to the repository of the Recipe Generator App! You can view the web application [HERE](https://recipes-freestyle-2022.herokuapp.com/). Otherwise, please follow the instructions below to learn how implement this program on your own.
 
 # Installation/Setup 
 

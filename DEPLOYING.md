@@ -47,14 +47,11 @@ git push heroku main
 Configuring remote credentials file:
 
 ```sh
-#heroku buildpacks:set heroku/python
+heroku buildpacks:set heroku/python
 heroku buildpacks:add https://github.com/s2t2/heroku-google-application-credentials-buildpack
 
 
 # stores contents of local credentials file into an environment variable on the server
 # ... references local creds file (e.g. "google-credentials-prod.json"):
 heroku config:set GOOGLE_CREDENTIALS="$(< google-credentials-prod.json)"
-
-# references the remote credentials file on the server (not necessary right now):
-#heroku config:set GOOGLE_APPLICATION_CREDENTIALS="google-credentials.json"
 ```

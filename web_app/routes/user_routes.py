@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, flash, redirect, current_app, url_for, session, request #, jsonify
+from flask import Blueprint, flash, redirect, current_app,  session, request #, jsonify
 
 from web_app.routes.wrappers import authenticated_route
 

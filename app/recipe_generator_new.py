@@ -1,7 +1,7 @@
 # app/recipe_generator.py
 
-import requests, json, os
-from pprint import pprint
+import requests, json
+#from pprint import pprint
 from IPython.display import Image, display 
 
 # FUNCTION TO CONVERT API DATA TO A MORE ACCESSIBLE FORMAT - PARAM COMMENT MADE 

@@ -2,9 +2,9 @@
 
 from flask import Blueprint, request, render_template, flash, redirect
 
-from pprint import pprint
+# from pprint import pprint
 
-from app.recipe_generator_new import display_category, display_area, display_name, display_random, display_ingredient, fetch_recipe_area, fetch_recipe_category
+from app.recipe_generator_new import display_category, display_area,  display_random, display_ingredient #, fetch_recipe_area, fetch_recipe_category
 from app.email_service import send_email
 
 from web_app.routes.wrappers import authenticated_route

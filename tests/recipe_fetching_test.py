@@ -1,6 +1,6 @@
 import pytest
 
-from app.recipe_generator_new import read_data, fetch_categories, fetch_ingredients, fetch_nationalities, display_area, display_category, display_ingredient, display_name, display_random, convert_to_dict, fetch_recipe_area, fetch_recipe_category, fetch_recipe_url
+from app.recipe_generator_new import read_data, fetch_categories, fetch_ingredients, fetch_nationalities, display_area, display_category, display_ingredient, display_name, display_random, fetch_recipe_area, fetch_recipe_category, fetch_recipe_url
 
 
 # Testing the data output of the functions relating to fetching and formatting data from the MealDB API

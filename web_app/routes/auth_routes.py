@@ -1,5 +1,5 @@
 
-from flask import session, flash, redirect, current_app
+from flask import session, redirect, current_app
 from flask import Blueprint, session, redirect, url_for, render_template #request, , , jsonify
 
 auth_routes = Blueprint("auth_routes", __name__)

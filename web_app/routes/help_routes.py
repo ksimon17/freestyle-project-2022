@@ -1,6 +1,6 @@
 # web_app/routes/help_routes.py
 
-from flask import Blueprint, request, render_template
+from flask import Blueprint, render_template
 from app.recipe_generator_new import fetch_nationalities, fetch_categories, fetch_ingredients
 
 help_routes = Blueprint("help_routes", __name__)

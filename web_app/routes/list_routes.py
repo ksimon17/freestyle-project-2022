@@ -1,6 +1,6 @@
 # web_app/routes/list_routes
 
-from flask import Blueprint, render_template, flash, redirect, current_app, url_for, session, request
+from flask import Blueprint, render_template, current_app, session, request
 
 from web_app.routes.wrappers import authenticated_route
 
